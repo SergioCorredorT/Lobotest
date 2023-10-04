@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>
+			Lobo Test
+		</title>
+
+		<meta charset="utf-8">
+		<meta http-equiv='cache-control' content='no-cache'>
+		<meta http-equiv='expires' content='0'>
+		<meta http-equiv='pragma' content='no-cache'>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+
+		<link rel="stylesheet" type="text/css" href="css/normalize.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+
+		<link rel="apple-touch-icon" sizes="57x57 60x60 72x72 76x76 114x114 120x120 144x144 152x152 180x180" href="img/favicon/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="16x16 32x32 96x96 192x192" href="img/favicon/android-icon-192x192.png">
+
+		<script src="js/comprobarErrorCarga.js" onerror="window.location.reload();"></script>
+		<script src="js/lang.js" defer></script>
+		<script src="js/frameworks/pdf-3.9.179.min.js"></script>
+		<script src="js/tools.js"></script>
+		<script src="js/main.js" defer></script>
+	</head>
+	<body>
+		<div id="visorImagenes"><img id="imagenVisor" src="">
+			<div id="botonCerrarVisorImagenes" class="cerrarAlertVisor">X</div>
+		</div>
+		<div id="contenedorBody">
+			<div id="fase2Test">
+				<div id="modalOpcionesDeEvaluacion">
+					<div id="contenedorOpcionesDeEvaluacion">
+						<div class="gridEvaluacion1 divGridEvaluacion">
+							<h1 data-langlocation="2,menuevaluacion,titulo" data-langmod="html" data-langactual="es">
+								Configurar evaluación
+							</h1>
+						</div>
+						<div class="divGridEvaluacion">
+							<p data-langlocation="2,menuevaluacion,prangopreguntas" data-langmod="html" data-langactual="es">
+								Rango de preguntas
+							</p>
+						</div>
+						<div class="gridEvaluacion3 divGridEvaluacion">
+							<input type="text" id="rangoPregAEvaluar" title="Introduzca aquí el rango o rangos de preguntas a evaluar" data-langlocation="2,menuevaluacion,titlerangopreguntas" data-langmod="title" data-langactual="es">
+							<p data-langlocation="2,menuevaluacion,explicacionrangopreguntas" data-langmod="html" data-langactual="es">Separe por comas ',' las preguntas y los rangos de preguntas que desee evaluar. Los rangos se escriben separados por guion '-'. Ejemplo: '1,3-5,8' En este ejemplo se evaluarán las preguntas 1,3,4,5 y 8</p>
+						</div>
+						<div class="divGridEvaluacion">
+							<select id="selectModoIncorrectasEvaluacion" class="modoIncorrectasEvaluacion" title="Selecciona el modo a tener en cuenta las respuestas incorrectas" data-langlocation="2,menuevaluacion,titlemodoincorrectasevaluacion" data-langmod="title" data-langactual="es">
+								<option name="1" data-langlocation="2,menuevaluacion,modoincorrectasoption1" data-langmod="html" data-langactual="es">
+									¿Cuánto resta cada incorrecta?
+								</option>
+								<option name="2" data-langlocation="2,menuevaluacion,modoincorrectasoption2" data-langmod="html" data-langactual="es">
+									¿Cada cuántas incorrectas resta una correcta?
+								</option>
+								<option name="3" data-langlocation="2,menuevaluacion,modoincorrectasoption3" data-langmod="html" data-langactual="es" selected>
+									[A – E / (Alternativas – 1)] * 10 / Preguntas
+								</option>
+							</select>
+						</div>
+						<div class="divGridEvaluacion">
+							<input type="number" id="restanLasIncorrectas" title="Introduzca cómo restan las incorrectas según el modo seleccionado" data-langlocation="2,menuevaluacion,restanlasincorrectas" data-langmod="title" data-langactual="es">
+						</div>
+						<div class="divGridEvaluacion">
+							<p data-langlocation="2,menuevaluacion,pNoContestadasIncorrectas" data-langmod="html" data-langactual="es">
+								Seleccione este check para que las preguntas no contestadas cuenten como incorrectas
+							</p>
+						</div>
+						<div class="divGridEvaluacion">
+							<input type="checkbox" id="noContestadasIncorrectas" title="Rellene para que las no contestadas cuenten como incorrectas" data-langlocation="2,menuevaluacion,checkNoContestadasIncorrectas" data-langmod="title" data-langactual="es">
+						</div>
+						<div class="divGridEvaluacion">
+							<input id="continuarEvaluacion" type="button" value="Continuar" title="Continuar con la operación seleccionada con la configuración dada" data-langlocation="2,menuevaluacion,continuarEvaluacion" data-langmod="title, value" data-langactual="es">
+						</div>
+						<div class="divGridEvaluacion">
+							<input id="cancelarEvaluacion" type="button" value="Cancelar" title="Cancelar la operación y cerrar ventana de configuración de evaluación" data-langlocation="2,menuevaluacion,cancelarEvaluacion" data-langmod="title, value" data-langactual="es">
+						</div>
+						<input type="hidden" id="botonPulsadoDeProcedencia" value="">
+					</div>
+				</div>
+				<div id="modalConfigColores">
+					<div id="contenedorConfigColores">
+						<div id="configColores">
+							<table class="tablaConfigColores">
+								<tr>
+									<th colspan="2">
+										<h1 data-langlocation="2,menuColores,titulo" data-langmod="html" data-langactual="es">Personalización de colores de interfaz</h1>
+									</th>
+								</tr>
+								<tr>
+									<th colspan="2">
+										<p class="advertenciaLocalStorage" data-langlocation="2,menuColores,avisoLocalStorage" data-langmod="html" data-langactual="es">¡Cambia el color y personaliza tu experiencia! Guardaremos tus preferencias en tu dispositivo. ¡Gracias por elegirnos! 😊</p>
+									</th>
+								</tr>
+								<tr>
+									<th colspan="2">
+										<h2 data-langlocation="2,menuColores,varios" data-langmod="html" data-langactual="es">Varios</h2>
+									</th>
+								</tr>
+								<tr>
+									<td data-langlocation="2,menuColores,fondoPantalla" data-langmod="html" data-langactual="es">
+										Fondo pantalla:
+									</td>
+									<td>
+										<input id="colorFondoPantalla" type="color" class="inputColorConfigColor" data-varCSS="fondoPantalla">
+									</td>
+								</tr>
+								<tr>
+									<td data-langlocation="2,menuColores,fondoAuxiliar" data-langmod="html" data-langactual="es">
+										Fondo ventanas auxiliares:
+									</td>
+									<td>
+										<input id="colorFondoAuxiliar" type="color" class="inputColorConfigColor" data-varCSS="fondoAuxiliar">
+									</td>
+								</tr>
+								<tr>
+									<td data-langlocation="2,menuColores,fondoMenu" data-langmod="html" data-langactual="es">
+										Fondo ventanas menú:
+									</td>
+									<td>
+										<input id="colorFondoMenu" type="color" class="inputColorConfigColor" data-varCSS="fondoMenu">
+									</td>
+								</tr>
+								<tr>
+									<td data-langlocation="2,menuColores,fondoBotones" data-langmod="html" data-langactual="es">
+										Fondo botones:
+									</td>
+									<td>
+										<input id="colorFondoBotones" type="color" class="inputColorConfigColor" data-varCSS="fondoBotones">
+									</td>
+								</tr>
+								<tr>
+									<td data-langlocation="2,menuColores,letramenus" data-langmod="html" data-langactual="es">
+										Letra:
+									</td>
+									<td>
+										<input id="colorLetraBotones" type="color" class="inputColorConfigColor" data-varCSS="letraBotones">
+									</td>
+								</tr>
+								<tr>
+									<td data-langlocation="2,menuColores,seleccion" data-langmod="html" data-langactual="es">
+										Selección:
+									</td>
+									<td>
+										<input id="colorSeleccion" type="color" class="inputColorConfigColor" data-varCSS="seleccion">
+									</td>
+								</tr>
+								<tr>
+									<th colspan="2">
+										<h2 data-langlocation="2,menuColores,test" data-langmod="html" data-langactual="es">Test</h2>
+									</th>
+								</tr>
+								<tr>
+									<td data-langlocation="2,menuColores,rspRellena" data-langmod="html" data-langactual="es">
+										Respuesta rellenada:
+									</td>
+									<td>
+										<input id="colorRelleno" type="color" class="inputColorConfigColor" data-varCSS="relleno">
+									</td>
+								</tr>
+								<tr>
+									<td data-langlocation="2,menuColores,rspsinrellenar" data-langmod="html" data-langactual="es">
+										Respuesta sin rellenar:
+									</td>
+									<td>
+										<input id="colorSinRellenar" type="color" class="inputColorConfigColor" data-varCSS="sinRellenar">
+									</td>
+								</tr>
+								<tr>
+									<td data-langlocation="2,menuColores,rsprellenatrastiempo" data-langmod="html" data-langactual="es">
+										Respuesta rellenada tras tiempo:
+									</td>
+									<td>
+										<input id="colorRellenoTrasTiempo" type="color" class="inputColorConfigColor" data-varCSS="rellenoTrasTiempo">
+									</td>
+								</tr>
+								<tr>
+									<td data-langlocation="2,menuColores,pregsinmarcar" data-langmod="html" data-langactual="es">
+										Pregunta sin marcar:
+									</td>
+									<td>
+										<input id="colorPreguntaSinMarcar" type="color" class="inputColorConfigColor" data-varCSS="preguntaSinMarcar">
+									</td>
+								</tr>
+								<tr>
+									<td data-langlocation="2,menuColores,preguntadudosa" data-langmod="html" data-langactual="es">
+										Pregunta marcada como dudosa:
+									</td>
+									<td>
+										<input id="colorPreguntaDudosa" type="color" class="inputColorConfigColor" data-varCSS="preguntaDudosa">
+									</td>
+								</tr>
+								<tr>
+									<td data-langlocation="2,menuColores,preguntamalformulada" data-langmod="html" data-langactual="es">
+										Pregunta marcada como mal formulada:
+									</td>
+									<td>
+										<input id="colorPreguntaMalFormulada" type="color" class="inputColorConfigColor" data-varCSS="preguntaMalFormulada">
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<select id="sombraTexto">
+											<option value="descripcion" disabled="" selected data-langlocation="2,menuColores,descripcionselect" data-langmod="html" data-langactual="es">Seleccione borde de texto (auto por defecto)</option>
+											<option value="auto" data-langlocation="2,menuColores,optionauto" data-langmod="html" data-langactual="es">Auto</option>
+											<option value="blanca" data-langlocation="2,menuColores,optionblanca" data-langmod="html" data-langactual="es">Blanca</option>
+											<option value="negra" data-langlocation="2,menuColores,optionnegra" data-langmod="html" data-langactual="es">Negra</option>
+											<option value="nada" data-langlocation="2,menuColores,optionnada" data-langmod="html" data-langactual="es">Nada</option>
+										</select>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div id="botonConfigColores">
+							<input id="botonRestaurarConfigColores" type="button" value="Restaurar" data-langlocation="2,menuColores,botonrestaurar" data-langmod="value" data-langactual="es">
+							<input id="botonVolverConfigColores" type="button" value="Volver" data-langlocation="2,menuColores,botonvolver" data-langmod="value" data-langactual="es">
+						</div>
+					</div>
+				</div>
+				<header id="cabeza">
+					<div id="superior" class="superior">
+						<div id="TabContainer" class="TabContainer">
+							<div id="pestanasPestaneroFase2">
+								<div data-value="PDFToolsTabItem" data-abierto="false" class="pestanaMenuFase2 pestanaMenuFase2OpcionesContenedor" data-langlocation="2,superior,pestanaPDF" data-langmod="title, html" data-langactual="es" title="Cliquéame para mostrar u ocultar opciones referentes directamente a los contenedores">
+									⚙ Contenedor
+								</div>
+								<div data-value="masAccionesTabItem" data-abierto="false" class="pestanaMenuFase2 pestanaMenuFase2OpcionesGenerales" id="masAccionesTabItem" data-langlocation="2,superior,summarymasAccionesTabItem" data-langmod="title,html" data-langactual="es" title="Cliquéame para mostrar u ocultar más opciones">
+									Más acciones
+								</div>
+							</div>
+							<div id="contenidoPestaneroFase2">
+								<div id="PDFToolsTabPanel" class="contenidoPestanaMenuFase2">
+									<div class="contenedorInputHeaderF2">
+										<select name="PDFselect" id="PDFselect" data-langlocation="2,superior,PDFselect" data-langmod="title" data-langactual="es" title="Aquí puede seleccionar el contenedor que desee configurar">
+											<option value="contenedorPDFs" data-langlocation="2,superior,PDFselectoption1" data-langmod="html" data-langactual="es">Panel</option>
+											<option value="ContenedorPDF1"  data-auxi="paginasContenedorPDF1EnImagenes" data-langlocation="2,superior,PDFselectoption2" data-langmod="html" data-langactual="es">Primario</option>
+											<option value="ContenedorPDF2"  data-auxi="paginasContenedorPDF2EnImagenes" data-langlocation="2,superior,PDFselectoption3" data-langmod="html" data-langactual="es">Secundario</option>
+										</select>
+									</div>
+									<div class="contenedorInputHeaderF2">
+										<select name="deformarPDF" id="deformarPDF" data-langlocation="2,superior,deformarPDF" data-langmod="title" data-langactual="es" title="Aquí puede seleccionar la faceta a configurar respecto al contenedor seleccionado en mi vecino">
+											<option value="altura" data-langlocation="2,superior,deformarPDFopcion1" data-langmod="html" data-langactual="es">Alto</option>
+											<option value="anchura" selected data-langlocation="2,superior,deformarPDFopcion2" data-langmod="html" data-langactual="es">Ancho</option>
+											<option value="zoom" data-langlocation="2,superior,deformarPDFopcion3" data-langmod="html" data-langactual="es">Zoom</option>
+										</select>
+									</div>
+									<div class="contenedorInputHeaderF2"><input id="mas" type="button" value="+" data-langlocation="2,superior,mas" data-langmod="title" data-langactual="es" title="Cliquéame para aumentar la faceta seleccionada del contenedor seleccionado"></div>
+									<div class="contenedorInputHeaderF2"><input id="menos" type="button" value="-" data-langlocation="2,superior,menos" data-langmod="title" data-langactual="es" title="Cliquéame para disminuir la faceta seleccionada del contenedor seleccionado"></div>
+									<div class="contenedorInputHeaderF2"><input id="mostrarOcultarPDF" type="button" value="👁" data-langlocation="2,superior,mostrarOcultarPDF" data-langmod="title" data-langactual="es" title="Cliquéame para ocultar o mostrar el contenedor seleccionado"></div>
+									<div class="contenedorInputHeaderF2"><input id="activarDesactivarModoNoche" disabled="" type="button" value="◧" data-langlocation="2,superior,activarDesactivarModoNoche" data-langmod="title" data-langactual="es" title="Cliquéame para invertir colores en el contenedor seleccionado"></div>
+									<div class="contenedorInputHeaderF2"><input id="borrador" type="button" data-langlocation="2,superior,borrador" data-langmod="title" data-langactual="es" title="Cliquéame para activar o desactivar el modo borrador en el contenedor seleccionado"></div>
+									<div class="contenedorInputHeaderF2"><input id="resetearPizarra" type="button" data-langlocation="2,superior,resetearPizarra" data-langmod="title" data-langactual="es" title="Cliquéame para borrar todo el contenido de las pizarras contenidas en contenedor 1 y contenedor 2"></div>
+									<div class="contenedorInputHeaderF2"><input id="botonColorPincel" type="button" value="🎨"><input id="colorPincel" type="color" data-langlocation="2,superior,botonColorPincel" data-langmod="title" data-langactual="es" title="Cliquéame para cambiar el color de pincel"></div>
+									<div class="contenedorInputHeaderF2"><input id="rotarPaginas" type="button" value="↷📄📄" data-langlocation="2,superior,rotarPaginas" data-langmod="title" data-langactual="es" title="Cliquéame para rotar páginas"></div>
+									<div class="contenedorInputHeaderF2">
+										<div id="botonInputFile3" class="botonInputFile botonInputFileFase2" data-idInput="file-open3" data-disabled="false" data-langlocation="2,superior,botonInputFile3" data-langmod="title" data-langactual="es" title="Cliquéame para cargar un archivo PDF o imagen en el contenedor seleccionado">📄</div>
+										<input type="file" id="file-open3" class="file-select" accept="application/pdf, image/png, .jpeg, .jpg, image/gif" multiple>
+									</div>
+									<div class="contenedorInputHeaderF2">
+										<div id="botonInputFile3Adicion" class="" data-disabled="false" data-langlocation="2,superior,botonInputFile3Adicion" data-langmod="title" data-langactual="es" title="Cliquéame para que le diga a mi vecino si sustituir el contenido ya existente o añadir"><p>❌+📄</p></div>
+										<input type="checkbox" id="file-open3AdicionCheckbox">
+									</div>
+									<div class="contenedorInputHeaderF2"><input id="cambiarOrientacion" type="button" value="🔃" data-langlocation="2,superior,cambiarOrientacion" data-langmod="title" data-langactual="es" title="Cliquéame para cambiar orientación de los contenedores 1 y 2"></div>
+									<div class="contenedorInputHeaderF2"><input id="mostrarOcultarPizarra" type="button" value="👁🖌" data-langlocation="2,superior,mostrarOcultarPizarra" data-langmod="title" data-langactual="es" title="Cliquéame para mostrar u ocultar las pizarras contenidas en contenedor 1 y contenedor 2"></div>
+									<div class="contenedorInputHeaderF2 contenedorBotonInstrucciones">
+										<input type="button" class="circle botonInstrucciones" value="?" data-areaAExplicar="PDFToolsTabPanel" title="Cliquéame si tienes dudas acerca de la aplicación">
+									</div>
+								</div>
+								<div id="masAccionesTabPanel" class="contenidoPestanaMenuFase2">
+									<div class="contenedorInputHeaderF2"><input id="botonMostrarOcultarPestanaContenedor" type="button" value="👁⚙Contenedor" data-langlocation="2,superior,botonMostrarOcultarPestanaContenedor" data-langmod="title, value" data-langactual="es" title="Mostrar u ocultar la pestaña de opciones repetidas de contenedor de archivo"></div>
+									<div class="contenedorInputHeaderF2"><input disabled="" id="botonDeseleccionar" type="button" value="Modo deseleccionar+descorrección" data-langlocation="2,superior,botonDeseleccionar" data-langmod="title, value" data-langactual="es" title="Mientras este modo está activo puede clicar en respuestas del test para deseleccionar si estaba seleccionada y para quitar corrección si estaba marcada como correcta o incorrecta"></div>
+									<div class="contenedorInputHeaderF2"><input id="mostrarOcultarApuntes" type="button" value="👁 apuntes" data-langlocation="2,superior,mostrarOcultarApuntes" data-langmod="title, value" data-langactual="es" title="Cliquéame para mostrar u ocultar las barras texto de cada pregunta para escribir apuntes"></div>
+									<div class="contenedorInputHeaderF2"><input type="button" value="(◕‿◕)" id="cambiarColores" data-langlocation="2,superior,cambiarColores" data-langmod="title" data-langactual="es" title="Cliquéame para mostrar la ventana de personalización de colores"></div>
+									<div class="contenedorInputHeaderF2"><input disabled="" id="botonTerminar" type="button" value="Terminar" data-langlocation="2,superior,botonTerminar" data-langmod="title, value" data-langactual="es" title="Cliquéame para dar por terminado el test, parar el temporizador y pasar a poder rellenar respuestas tras tiempo"></div>
+									<div class="contenedorInputHeaderF2"><input disabled="" id="botonCorregir" type="button" value="✔️❌" class="" data-langlocation="2,superior,botonCorregir" data-langmod="title" data-langactual="es" title="Mientras este modo está activo puede clicar en las respuestas para señalarlas como correctas, un segundo click cambia a incorrecta y un tercero vuelve al estado de sin corregir"></div>
+									<div class="contenedorInputHeaderF2"><input disabled="" id="botonEvaluar" type="button" value="Evaluar" data-langlocation="2,superior,botonEvaluar" data-langmod="title, value" data-langactual="es" title="Cliquéame para mostrar una ventana con su evaluación de este test basado en sus respuestas y si su correción realizada previamente"></div>
+									<div class="contenedorInputHeaderF2"><input type="button" id="guardarResultado" value="💾" disabled="" data-langlocation="2,superior,guardarResultado" data-langmod="title" data-langactual="es" title="Cliquéame para guardar un informe de su test en un archivo con el nombre escrito en el título, que contiene su evaluación, apuntes y respuestas"></div>
+									<div class="contenedorInputHeaderF2"><input id="reiniciarWeb" type="button" value="Nuevo test" data-langlocation="2,superior,reiniciarWeb" data-langmod="title, value" data-langactual="es" title="Cliquéame para refrescar la página y volver al menú principal"></div>
+									<div id="divTitulo" class="contenedorInputHeaderF2">
+										<label for="tituloTest2" data-langlocation="2,superior,labelTituloTest2" data-langmod="html" data-langactual="es">Título: </label><input name="tituloTest2" id="tituloTest2" type="text" data-langlocation="2,superior,tituloTest2" data-langmod="title,placeholder" data-langactual="es" title="Escriba aquí el título del test" placeholder="Introduzca el título del test"/>
+									</div>
+									<div class="contenedorInputHeaderF2 contenedorBotonInstrucciones">
+										<input type="button" class="circle botonInstrucciones" value="?" data-areaAExplicar="masAccionesTabPanel" data-langlocation="2,superior,instruc" data-langmod="title" data-langactual="es" title="Cliquéame si tienes dudas acerca de la aplicación">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="datos" class="datos">
+							<div class="alineacionContenedoresInputHeaderF2">
+								<div class="contenedorInputHeaderF2">
+									<form action="https://www.paypal.com/donate" method="post" target="_blank">
+										<input type="hidden" name="hosted_button_id" value="CV84HH5WUJ3Y8" />
+										<input class="botonDonar botonDonarF2" data-langlocation="imgDonar" data-langmod="src, alt, title" data-langactual="es" type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donateCC_LG.gif" name="submit" title="PayPal - ¡la forma más segura y fácil de pagar en línea!" alt="Donar con botón PayPal" />
+									</form>
+								</div>
+							</div>
+							<div class="alineacionContenedoresInputHeaderF2 alineacionContenedoresInputHeaderF2Principal">
+								<time id="divTemporizador" data-langlocation="2,superior,divTemporizador" data-langmod="title" data-langactual="es" title="Soy un temporizador, me gusta la rapidez">
+									<label>⏳:<input type="text" id="tiempoRestante" value="0" disabled="" size="5"></label>
+								</time>
+								<time id="divCronometro" data-langlocation="2,superior,divCronometro" data-langmod="title" data-langactual="es" title="Soy un cronómetro, no soy tan impaciente como mi vecino el temporizador">
+									<label>⏱️:<input type="text" name="cronometro" id="cronometro" value="00:00:00" disabled="" size="5"></label>
+								</time>
+								<div class="contenedorInputHeaderF2"><input disabled="" id="botonPausarContinuarTiempos" type="button" value="⏸︎" data-langlocation="2,superior,botonPausarContinuarTiempos" data-langmod="title" data-langactual="es" title="Cliquéame para pausar el temporizador, y el cronómetro también incluso si no está visible"></div>
+								<div class="contenedorInputHeaderF2"><input disabled="" id="reiniciarTiempos" type="button" value="↺" data-langlocation="2,superior,reiniciarTiempos" data-langmod="title" data-langactual="es" title="Cliquéame para retornar el temporizador al tiempo inicial, y al cronómetro a cero"></div>
+							</div>
+							<div class="alineacionContenedoresInputHeaderF2">
+								<div class="contenedorInputHeaderF2">
+									<input type="button" class="circle botonInstrucciones" value="?" data-areaAExplicar="datos" data-langlocation="2,superior,instruc2" data-langmod="title" data-langactual="es" title="Cliquéame si tienes dudas acerca de la aplicación">
+								</div>
+							</div>
+						</div>
+					</div>
+				</header>
+				<main id="cuerpo">
+					<div id="barraConfigContenedorPDFs">
+						<div id="botonBarraVerticalConfigPDF1OcultarMostrar" class="botonBarraConfigContenedorPDFs botonBarraConfig" data-langlocation="2,barralateral,botonBarraVerticalConfigPDF1OcultarMostrar" data-langmod="title" data-langactual="es" title="Cliquéame para mostrar u ocultar el contenedor 1">
+							<p>👁1</p>
+						</div>
+						<div id="botonBarraVerticalConfigPDF2OcultarMostrar" class="botonBarraConfigContenedorPDFs botonBarraConfig" data-langlocation="2,barralateral,botonBarraVerticalConfigPDF2OcultarMostrar" data-langmod="title" data-langactual="es" title="Cliquéame para mostrar u ocultar el contenedor 2">
+							<p>👁2</p>
+						</div>
+						<div id="botonBarraVerticalConfigPDFmostrarOcultarContenedorTestYModal" class="botonBarraConfigContenedorPDFs botonBarraConfig" data-langlocation="2,barralateral,mostrarOcultarContenedorTestYModal" data-langmod="title,value" data-langactual="es" title="Cliquéame para mostrar u ocultar test">
+							<p>👁 Test</p>
+						</div>
+						<div id="botonBarraVerticalConfigPDFmostrarOcultarAnadirQuitarRsp" class="botonBarraConfigContenedorPDFs botonBarraConfig" data-langlocation="2,barralateral,mostrarOcultarAnadirQuitarRsp" data-langmod="title" data-langactual="es" title="Cliquéame para mostrar u ocultar opciones de añadir o quitar opciones de respuesta a cada pregunta">
+							<p>± ABC</p>
+						</div>
+						<div id="botonConfigPDFsActivarDesactivarModoNoche" class="botonBarraConfigContenedorPDFs botonBarraConfig" data-langlocation="2,barralateral,botonConfigPDFsActivarDesactivarModoNoche" data-langmod="title" data-langactual="es" title="Cliquéame para invertir los colores de ambos contenedores">
+							<p>◧</p>
+						</div>
+						<div id="botonBarraHorizontalConfigPDF1CambiarOrientacion" class="botonBarraConfigContenedorPDFs botonBarraConfig" data-langlocation="2,barralateral,botonBarraHorizontalConfigPDF1CambiarOrientacion" data-langmod="title" data-langactual="es" title="Cliquéame para cambiar orientación de los contenedores 1 y 2">
+							<p>🔃</p>
+						</div>
+					</div>
+					<div id="contenedorPDFsYTest">
+						<div id="contenedorPDFs">
+							<div id="ContenedorPDF1" class="ContenedorPDF">
+								<div id="ContenedorPDF1yPizarra" class="ContenedorPDFyPizarra">
+									<div id="ContenedorPDF1EnImagenes" class="ContenedorPDFEnImagenes contenedorPaginas">
+									</div>
+									<div class="contenidoInicial" id="contenidoInicial3" data-contenedor="F2PDF1">
+										<p id="contenidoBasicoContenedor1" class="contenidoBasicoContenedor" data-langlocation="2,centro,contenidoBasicoContenedor1" data-langmod="html" data-langactual="es">Contenedor 1</p>
+									</div>
+									<canvas id="pizarra1" class="pizarra"></canvas>
+								</div>
+								<div id="modalCarga3" class="modalCarga"></div>
+								<div id="contenedorDivsScrollingTouch1" class="contenedorDivsScrollingTouch">
+									<div id="divScrollingPDF1V" class="divScrollingPDF divScrollingPDFV"></div>
+									<div id="divScrollingPDF1H" class="divScrollingPDF divScrollingPDFH"></div>
+								</div>
+								<div id="divMenuRapido1" class="divMenuRapido">
+									<div id="barraHorizontalSuperiorConfigPDF1" class="barraConfigPDF barraHorizontalSuperiorConfigPDF barraHorizontalConfigPDF barraConfigPDF1">
+										<div id="botonBarraConfigMenosPaginaPDF1" class="botonBarraConfig botonBarraHorizontalConfig" data-disabled="true" data-pdf="1" data-langlocation="2,menurapido,botonBarraConfigMenosPaginaPDF1" data-langmod="title" data-langactual="es" title="Cliquéame para restar 1 a la página actual y enfocarla">
+											<p>-</p>
+										</div>
+										<input type="number" value="1" max="999" min="1" id="inputTextPaginaSeleccionadaPDF1" data-pdf="1" disabled="" class="inputTextPaginaSeleccionada inputNumberBarraConfig botonBarraHorizontalConfig" data-langlocation="2,menurapido,inputTextPaginaSeleccionadaPDF1" data-langmod="title" data-langactual="es" title="Cliquéame para poder introducir la página a la que quiere ir">
+
+										<div id="botonBarraConfigMasPaginaPDF1" class="botonBarraConfig botonBarraHorizontalConfig" data-disabled="true" data-pdf="1" data-langlocation="2,menurapido,botonBarraConfigMasPaginaPDF1" data-langmod="title" data-langactual="es" title="Cliquéame para sumar 1 a la página actual y enfocarla">
+											<p>+</p>
+										</div>
+										<div id="botonBarraConfigRotarPaginaPDF1" class="botonBarraConfig botonBarraHorizontalConfig" data-pdf="1" data-langlocation="2,menurapido,botonBarraConfigRotarPaginaPDF1" data-langmod="title" data-langactual="es" title="Cliquéame para rotar la página seleccionada">
+											<p>↷📄</p>
+										</div>
+										<div id="botonBarraConfigRotarTodasPaginasPDF1" class="botonBarraConfig botonBarraHorizontalConfig" data-pdf="1" data-langlocation="2,menurapido,botonBarraConfigRotarTodasPaginasPDF1" data-langmod="title" data-langactual="es" title="Cliquéame para rotar todas las páginas de este contenedor, pero sin marearse">
+											<p>↷📄📄</p>
+										</div>
+									</div>
+									<div id="barraVerticalIzquierdaConfigPDF1" class="barraConfigPDF barraVerticalIzquierdaConfigPDF barraVerticalConfigPDF barraConfigPDF1">
+										<div id="botonBarraConfigPDF1ActivarDesactivarModoNoche" class="botonBarraConfig botonBarraVerticalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1ActivarDesactivarModoNoche" data-langmod="title" data-langactual="es" title="Cliquéame para invertir los colores de las páginas de este contenedor">
+											<p>◧</p>
+										</div>
+										<div id="botonBarraConfigPDF1Deshacer" class="botonBarraConfig botonBarraVerticalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1Deshacer" data-langmod="title" data-langactual="es" title="Cliquéame para deshacer lo último pintado">
+											<p>&#x21A9;</p>
+										</div>
+										<div id="botonBarraConfigPDF1Rehacer" class="botonBarraConfig botonBarraVerticalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1Rehacer" data-langmod="title" data-langactual="es" title="Cliquéame para rehacer lo último pintado">
+											<p>&#x21AA;</p>
+										</div>
+									</div>
+									<div id="barraHorizontalInferiorConfigPDF1" class="barraConfigPDF barraHorizontalInferiorConfigPDF barraHorizontalConfigPDF barraConfigPDF1">
+										<div id="botonBarraConfigPDF1BorrarPizarra" class="botonBarraConfig botonBarraHorizontalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1BorrarPizarra" data-langmod="title" data-langactual="es" title="Cliquéame para borrar la pizarra entera de este contenedor">
+											<p>
+												<img class="iconoGoma" src="data:image/x-icon;base64,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Jv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJ6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHRvqM5MV+L/VVzV/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJaDeLXRpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJrQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGnJnbRpib50qYm5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+P////B////gP///wB///4AP//8AB//+AAP//AAB//gAAP/wAAB/4AAAP8AAAB/AAAAPwAAAB+AAAAPwAAAB+AAAAPwAAAB+AAAAfwAAAD+AAAA/wAAAf+AAAP/wAAH/+AAD//wAB//+AA///wAf//+AP///wH///+D////5/8=">
+												<img class="iconoGoma" src="data:image/x-icon;base64,AAACAAEAICAAAAAAAACoEAAAFgAAACgAAAAgAAAAQAAAAAEAIAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEhRyv5FT8z/XF+40wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABETsv/RE7L/0ROy/9TXM7/o6XW9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARE7L/0ROy/9ETsv/U1zO/+Tl6v/k5er/d3vJ7gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEROy/9ETsv/RE7L/1Nczv/k5er/5OXq/09Zzf9ETsv/Vlu+6QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABETsv/RE7L/0ROy/9TXM7/5OXq/+Tl6v9PWc3/RE7L/0ROy/9ETsv/YmO23gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARE7L/0ROy/9ETsv/U1zO/+Tl6v/k5er/T1nN/0ROy/9ETsv/RE7L/0VPzf9MV+L/dG+ozgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEROy/9ETsv/RE7L/1Nczv/k5er/5OXq/09Zzf9ETsv/RE7L/0ROy/9FT83/TFfi/0xX4v9MV+L/dG+ozgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABETsv/RE7L/0ROy/9TXM7/5OXq/+Tl6v9PWc3/RE7L/0ROy/9ETsv/RU/N/0xX4v9MV+L/TFfi/0xX4v9MV+L/dG+ozgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARE7L/0ROy/9ETsv/U1zO/+Tl6v/k5er/T1nN/0ROy/9ETsv/RE7L/0VPzf9MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/dG+ozgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEROy/9ETsv/RE7L/1Nczv/k5er/5OXq/09Zzf9ETsv/RE7L/0ROy/9FT83/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/loN4tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABETsv/RE7L/0ROy/9TXM7/5OXq/+Tl6v9PWc3/RE7L/0ROy/9ETsv/RU/N/0xX4v9MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/TFfi/1Vc1f/Rpib/0aYljwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASFHK/kROy/9ETsv/U1zO/+Tl6v/k5er/T1nN/0ROy/9ETsv/RE7L/0VPzf9MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9VXdX/0aYm/9GmJv/Rpib/0aYljwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFT8z/RE7L/1Nczv/k5er/5OXq/09Zzf9ETsv/RE7L/0ROy/9FT83/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/VV3V/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYljwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFxfuNNTXM7/5OXq/+Tl6v9PWc3/RE7L/0ROy/9ETsv/RU/N/0xX4v9MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/TFfi/1Vc1f/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYljwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKOl1vTk5er/T1nN/0ROy/9ETsv/RE7L/0VPzf9MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9VXNX/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYljwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHd7ye5ETsv/RE7L/0ROy/9FT83/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/VVzV/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYljwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFZbvulETsv/RU/N/0xX4v9MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/TFfi/1Vc1f/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYljwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGJjtt5MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9VXNX/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYljwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHRvqM5MV+L/TFfi/0xX4v9MV+L/TFfi/0xX4v9MV+L/VVzV/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYldAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHRvqM5MV+L/TFfi/0xX4v9MV+L/TFfi/1Vc1f/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHRvqM5MV+L/TFfi/0xX4v9VXNX/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJ6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHRvqM5MV+L/VVzV/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJaDeLXRpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJrQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGnJnbRpib50qYm5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+P////B////gP///wB///4AP//8AB//+AAP//AAB//gAAP/wAAB/4AAAP8AAAB/AAAAPwAAAB+AAAAPwAAAB+AAAAPwAAAB+AAAAfwAAAD+AAAA/wAAAf+AAAP/wAAH/+AAD//wAB//+AA///wAf//+AP///wH///+D////5/8=">
+											</p>
+										</div>
+										<div id="botonBarraConfigPDF1Borrador" class="botonBarraConfig botonBarraHorizontalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1Borrador" data-langmod="title" data-langactual="es" title="Con este modo activo podrá clicar donde desee borrar dentro de este contenedor">
+											<p>
+												<img class="iconoGoma" src="data:image/x-icon;base64,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Jv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJ6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHRvqM5MV+L/VVzV/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJaDeLXRpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJrQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGnJnbRpib50qYm5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+P////B////gP///wB///4AP//8AB//+AAP//AAB//gAAP/wAAB/4AAAP8AAAB/AAAAPwAAAB+AAAAPwAAAB+AAAAPwAAAB+AAAAfwAAAD+AAAA/wAAAf+AAAP/wAAH/+AAD//wAB//+AA///wAf//+AP///wH///+D////5/8=">
+											</p>
+											<input type="button" id="borradorPincel1">
+										</div>
+										<div id="botonBarraConfigPDF1MostrarOcultarPizarra" class="botonBarraConfig botonBarraHorizontalConfig botonBarraConfigPDFMostrarOcultarPizarra" data-langlocation="2,menurapido,botonBarraConfigPDF1MostrarOcultarPizarra" data-langmod="title" data-langactual="es" title="Cliquéame para mostrar u ocultar lo que ha pintado">
+											<p>👁 🖌</p>
+										</div>
+										<div id="botonBarraConfigPDF1ColorPincel" class="botonBarraConfig botonBarraHorizontalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1ColorPincel" data-langmod="title" data-langactual="es" title="Cliquéame para mostrar y elegir colores de pincel">
+											<p>&#127912;</p>
+											<input type="color" id="colorPincel1">
+										</div>
+									</div>
+									<div id="barraVerticalDerechaConfigPDF1" class="barraConfigPDF barraVerticalDerechaConfigPDF barraVerticalConfigPDF barraConfigPDF1">
+										<div id="botonBarraConfigPDF1Borrar" class="botonBarraConfig botonBarraVerticalConfig" data-disabled="true" data-langlocation="2,menurapido,botonBarraConfigPDF1Borrar" data-langmod="title" data-langactual="es" title="Cliquéame para eliminar varias páginas">
+											<p class="cerrarPaginas">📄</p>
+											<p class="cerrarPaginas">❌</p>
+										</div>
+										<div id="botonBarraConfigPDF1InputFile" class="botonBarraConfig botonBarraVerticalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1InputFile" data-langmod="title" data-langactual="es" title="Cliquéame para introducir un archivo PDF o una imagen. Mi vecino me dice si añadir o sustituir el contenido ya presente">
+											<p>📄</p>
+											<input type="file" id="file-open4" class="file-select" accept="application/pdf, image/png, .jpeg, .jpg, image/gif" multiple>
+										</div>
+										<div id="botonBarraConfigPDF1InputFileAdicion" class="botonBarraConfig botonBarraVerticalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1InputFileAdicion" data-langmod="title" data-langactual="es" title="Cliquéame para que le diga a mi vecino si sustituir el contenido ya existente o añadir">
+											<p>❌+📄</p>
+											<input type="checkbox" id="file-open4AdicionCheckbox">
+										</div>
+									</div>
+									<div id="divBotonConfigPDF1" class="divBotonConfigPDF" data-langlocation="2,menurapido,divBotonConfigPDF1" data-langmod="title" data-langactual="es" title="Cliquéame para mostrar el menú rápido para este contenedor">
+										<p>⚙</p>
+									</div>
+								</div>
+							</div>
+							<div id="ContenedorPDF2" class="ContenedorPDF">
+								<div id="lineaDivisoriaMovilHorizontal" class="lineaDivisoriaMovil lineaDivisoriaMovilHorizontal" data-langlocation="2,barramovil,lineaDivisoriaMovilHorizontal" data-langmod="title" data-langactual="es" title="Arrástrame para cambiar tamaños verticales">
+									<span></span>
+								</div>
+								<div id="lineaDivisoriaMovilVertical" class="lineaDivisoriaMovil lineaDivisoriaMovilVertical" data-langlocation="2,barramovil,lineaDivisoriaMovilVertical" data-langmod="title" data-langactual="es" title="Arrástrame para cambiar tamaños horizontales">
+									<span></span>
+								</div>
+								<div id="ContenedorPDF2yPizarra" class="ContenedorPDFyPizarra">
+									<div id="ContenedorPDF2EnImagenes" class="ContenedorPDFEnImagenes contenedorPaginas">
+									</div>
+									<div class="contenidoInicial" id="contenidoInicial4" data-contenedor="F2PDF2">
+										<p id="contenidoBasicoContenedor2" class="contenidoBasicoContenedor" data-langlocation="2,centro,contenidoBasicoContenedor2" data-langmod="html">Contenedor 2</p>
+									</div>
+									<canvas id="pizarra2" class="pizarra"></canvas>
+								</div>
+								<div id="modalCarga4" class="modalCarga"></div>
+								<div id="contenedorDivsScrollingTouch2" class="contenedorDivsScrollingTouch">
+									<div id="divScrollingPDF2V" class="divScrollingPDF divScrollingPDFV"></div>
+									<div id="divScrollingPDF2H" class="divScrollingPDF divScrollingPDFH"></div>
+								</div>
+								<div id="divMenuRapido2" class="divMenuRapido">
+
+									<div id="barraHorizontalSuperiorConfigPDF2" class="barraConfigPDF barraHorizontalSuperiorConfigPDF barraHorizontalConfigPDF barraConfigPDF2">
+										<div id="botonBarraConfigMenosPaginaPDF2" class="botonBarraConfig botonBarraHorizontalConfig" data-disabled="true" data-pdf="2" data-langlocation="2,menurapido,botonBarraConfigMenosPaginaPDF1" data-langmod="title" data-langactual="es" title="Cliquéame para restar 1 a la página actual y enfocarla">
+											<p>-</p>
+										</div>
+
+										<input type="number" value="1" max="999" min="1" id="inputTextPaginaSeleccionadaPDF2" data-pdf="2" disabled="" class="inputTextPaginaSeleccionada inputNumberBarraConfig botonBarraHorizontalConfig" data-langlocation="2,menurapido,inputTextPaginaSeleccionadaPDF1" data-langmod="title" data-langactual="es" title="Cliquéame para poder introducir la página a la que quiere ir">
+
+										<div id="botonBarraConfigMasPaginaPDF2" class="botonBarraConfig botonBarraHorizontalConfig" data-disabled="true" data-pdf="2" data-langlocation="2,menurapido,botonBarraConfigMasPaginaPDF1" data-langmod="title" data-langactual="es" title="Cliquéame para sumar 1 a la página actual y enfocarla">
+											<p>+</p>
+										</div>
+										<div id="botonBarraConfigRotarPaginaPDF2" class="botonBarraConfig botonBarraHorizontalConfig" data-pdf="2" data-langlocation="2,menurapido,botonBarraConfigRotarPaginaPDF1" data-langmod="title" data-langactual="es" title="Cliquéame para rotar la página seleccionada">
+											<p>↷📄</p>
+										</div>
+										<div id="botonBarraConfigRotarTodasPaginasPDF2" class="botonBarraConfig botonBarraHorizontalConfig" data-pdf="2" data-langlocation="2,menurapido,botonBarraConfigRotarTodasPaginasPDF1" data-langmod="title" data-langactual="es" title="Cliquéame para rotar todas las páginas de este contenedor, pero sin marearse">
+											<p>↷📄📄</p>
+										</div>
+									</div>
+									<div id="barraVerticalIzquierdaConfigPDF2" class="barraConfigPDF barraVerticalIzquierdaConfigPDF barraVerticalConfigPDF barraConfigPDF2">
+										<div id="botonBarraConfigPDF2ActivarDesactivarModoNoche" class="botonBarraConfig botonBarraVerticalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1ActivarDesactivarModoNoche" data-langmod="title" data-langactual="es" title="Cliquéame para invertir los colores del contenedor 2">
+											<p>◧</p>
+										</div>
+										<div id="botonBarraConfigPDF2Deshacer" class="botonBarraConfig botonBarraVerticalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1Deshacer" data-langmod="title" data-langactual="es" title="Cliquéame para deshacer lo último pintado">
+											<p>&#x21A9;</p>
+										</div>
+										<div id="botonBarraConfigPDF2Rehacer" class="botonBarraConfig botonBarraVerticalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1Rehacer" data-langmod="title" data-langactual="es" title="Cliquéame para rehacer lo último pintado">
+											<p>&#x21AA;</p>
+										</div>
+									</div>
+									<div id="barraHorizontalInferiorConfigPDF2" class="barraConfigPDF barraHorizontalInferiorConfigPDF barraHorizontalConfigPDF barraConfigPDF2">
+										<div id="botonBarraConfigPDF2BorrarPizarra" class="botonBarraConfig botonBarraHorizontalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1BorrarPizarra" data-langmod="title" data-langactual="es" title="Cliquéame para borrar la pizarra entera de este contenedor">
+											<p>
+												<img class="iconoGoma" src="data:image/x-icon;base64,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Jv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJ6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHRvqM5MV+L/VVzV/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJaDeLXRpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJrQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGnJnbRpib50qYm5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+P////B////gP///wB///4AP//8AB//+AAP//AAB//gAAP/wAAB/4AAAP8AAAB/AAAAPwAAAB+AAAAPwAAAB+AAAAPwAAAB+AAAAfwAAAD+AAAA/wAAAf+AAAP/wAAH/+AAD//wAB//+AA///wAf//+AP///wH///+D////5/8=">
+												<img class="iconoGoma" src="data:image/x-icon;base64,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Jv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJ6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHRvqM5MV+L/VVzV/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJaDeLXRpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJrQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGnJnbRpib50qYm5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+P////B////gP///wB///4AP//8AB//+AAP//AAB//gAAP/wAAB/4AAAP8AAAB/AAAAPwAAAB+AAAAPwAAAB+AAAAPwAAAB+AAAAfwAAAD+AAAA/wAAAf+AAAP/wAAH/+AAD//wAB//+AA///wAf//+AP///wH///+D////5/8=">
+											</p>
+										</div>
+										<div id="botonBarraConfigPDF2Borrador" class="botonBarraConfig botonBarraHorizontalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1Borrador" data-langmod="title" data-langactual="es" title="Con este modo activo podrá clicar donde desee borrar dentro de este contenedor">
+											<p>
+												<img class="iconoGoma" src="data:image/x-icon;base64,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Jv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJ6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHRvqM5MV+L/VVzV/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJaDeLXRpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJv/Rpib/0aYm/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib/0aYm/9GmJrQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGmJY/Rpib/0aYm/9GmJv/Rpib+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANGnJnbRpib50qYm5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/+P////B////gP///wB///4AP//8AB//+AAP//AAB//gAAP/wAAB/4AAAP8AAAB/AAAAPwAAAB+AAAAPwAAAB+AAAAPwAAAB+AAAAfwAAAD+AAAA/wAAAf+AAAP/wAAH/+AAD//wAB//+AA///wAf//+AP///wH///+D////5/8=">
+											</p>
+											<input type="button" id="borradorPincel2">
+										</div>
+										<div id="botonBarraConfigPDF2MostrarOcultarPizarra" class="botonBarraConfig botonBarraHorizontalConfig botonBarraConfigPDFMostrarOcultarPizarra" data-langlocation="2,menurapido,botonBarraConfigPDF1MostrarOcultarPizarra" data-langmod="title" data-langactual="es" title="Cliquéame para mostrar u ocultar lo que ha pintado">
+											<p>👁 🖌</p>
+										</div>
+										<div id="botonBarraConfigPDF2ColorPincel" class="botonBarraConfig botonBarraHorizontalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1ColorPincel" data-langmod="title" data-langactual="es" title="Cliquéame para mostrar y elegir colores de pincel">
+											<p>&#127912;</p>
+											<input type="color" id="colorPincel2">
+										</div>
+									</div>
+									<div id="barraVerticalConfigPDF2" class="barraConfigPDF barraVerticalDerechaConfigPDF barraVerticalConfigPDF barraConfigPDF2">
+										<div id="botonBarraConfigPDF2Borrar" class="botonBarraConfig botonBarraVerticalConfig" data-disabled="true" data-langlocation="2,menurapido,botonBarraConfigPDF1Borrar" data-langmod="title" data-langactual="es" title="Cliquéame para eliminar varias páginas">
+											<p class="cerrarPaginas">📄</p>
+											<p class="cerrarPaginas">❌</p>
+										</div>
+										<div id="botonBarraConfigPDF2InputFile" class="botonBarraConfig botonBarraVerticalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1InputFile" data-langmod="title" data-langactual="es" title="Cliquéame para introducir un archivo PDF o una imagen. Mi vecino me dice si añadir o sustituir el contenido ya presente">
+											<p>📄</p>
+											<input type="file" id="file-open5" class="file-select" accept="application/pdf, image/png, .jpeg, .jpg, image/gif" multiple>
+										</div>
+										<div id="botonBarraConfigPDF2InputFileAdicion" class="botonBarraConfig botonBarraVerticalConfig" data-langlocation="2,menurapido,botonBarraConfigPDF1InputFileAdicion" data-langmod="title" data-langactual="es" title="Cliquéame para que le diga a mi vecino si sustituir el contenido ya existente o añadir">
+											<p>❌+📄</p>
+											<input type="checkbox" id="file-open5AdicionCheckbox">
+										</div>
+									</div>
+									<div id="divBotonConfigPDF2" class="divBotonConfigPDF" data-langlocation="2,menurapido,divBotonConfigPDF1" data-langmod="title" data-langactual="es" title="Cliquéame para mostrar el menú rápido para el contenedor 2">
+										<p>⚙</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="contenedorTestYModal">
+							<div id="lineaDivisoriaMovilVerticalContenedorPDFsYContenedorTestYModal" class="lineaDivisoriaMovil lineaDivisoriaMovilVertical" data-langlocation="2,barramovil,lineaDivisoriaMovilVerticalContenedorPDFsYContenedorTestYModal" data-langmod="title" data-langactual="es" title="Arrástrame para cambiar tamaños horizontales">
+								<span></span>
+							</div>
+							<div id="lineaDivisoriaMovilHorizontalContenedorPDFsYContenedorTestYModal" class="lineaDivisoriaMovil lineaDivisoriaMovilHorizontal" data-langlocation="2,barramovil,lineaDivisoriaMovilHorizontalContenedorPDFsYContenedorTestYModal" data-langmod="title" data-langactual="es" title="Arrástrame para cambiar tamaños verticales">
+								<span></span>
+							</div>
+							<div id="modalTest"><input id="botonEmpezarTest" type="button" value="Empezar Test" data-langlocation="2,test,modalTest" data-langmod="title,value" data-langactual="es" title="Cliquéame para comenzar el test, accionar el temporizador y cronómetro"></div>
+							<div id="contenedorTest" class="contenedor1">
+								<div id="contenedorTest-preguntasSinTextArea">
+
+								</div>
+								<div id="contenedorTest-textArea">
+									<div id="barraCambioTamanoApunteGeneralTextarea">
+										<span></span>
+										<p class="textoBarraCambioTamanoApunteGeneralTextarea" data-langlocation="2,test,ptextoBarraCambioTamanoApunteGeneralTextarea" data-langmod="html" data-langactual="es">↕ Apuntes Generales ↕</p>
+									</div>
+									<textarea id='apunteGeneralTextarea' placeholder='Mis apuntes generales' data-langlocation="2,test,apunteGeneralTextarea" data-langmod="title, placeholder" data-langactual="es" title="Aquí puede introducir sus apuntes respecto a este test"></textarea>
+									<p id='apunteGeneralP'></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+			<div id="fase1Configuracion">
+				<div id="config">
+					<div class="configConjuntoMensajeAvisoInicial">
+						<span id="comprobacionCargaScriptErronea" class="mensajeAvisoInicial"><span data-langlocation="carga,incorrecta" data-langmod="html" data-langactual="es">Cargando... </span>◉</span>
+						<span id="comprobacionCargaScriptCorrectaConIncompatibilidad" class="mensajeAvisoInicial"><span data-langlocation="carga,incompatibilidades" data-langmod="html" data-langactual="es">Carga correcta pero con incompatibilidades detectadas </span>◉</span>
+						<span id="comprobacionCargaScriptCorrecta" class="mensajeAvisoInicial"><span data-langlocation="carga,correcta" data-langmod="html" data-langactual="es">Carga correcta </span>◉</span>
+					</div>
+					<div class="configConjunto" data-langlocation="1,config,contidioma" data-langmod="title" data-langactual="es" title="Elija el idioma que desee">
+						<div class="banderas">
+							<div class="bandera" data-idioma="es">
+								<img src="img/banderas/es.svg" alt="Español" title="Español">
+							</div>
+							<div class="bandera" data-idioma="en">
+								<img src="img/banderas/en.svg" alt="English" title="English">
+							</div>
+						</div>
+					</div>
+					<div class="configConjunto camposTiempo" data-langlocation="1,config,conttiempos" data-langmod="title" data-langactual="es" title="Introduzca el tiempo para el temporizador">
+						<div class="divEtiquetaTiempo"><span class="etiquetaTiempo" data-langlocation="1,config,etiquetaTiempo" data-langmod="html" data-langactual="es">Temporizador:</span></div>
+						<div class="configTiemposTemporizador">
+							<div><label for="tiempoMaxEnHoras" data-langlocation="1,config,horas" data-langmod="html" data-langactual="es">Horas:</label>
+								<input type="number" name="tiempoMaxEnHoras" id="tiempoMaxEnHoras" value="0" min="0" class="inputTextCorto focusContenido tiempoValues"></div>
+							<div><label for="tiempoMaxEnMinutos" data-langlocation="1,config,minutos" data-langmod="html" data-langactual="es">Minutos:</label>
+								<input type="number" name="tiempoMaxEnMinutos" id="tiempoMaxEnMinutos" value="50" min="0" max="59" class="inputTextCorto focusContenido tiempoValues"></div>
+							<div><label for="tiempoMaxEnSegundos" data-langlocation="1,config,segundos" data-langmod="html" data-langactual="es">Segundos:</label>
+								<input type="number" name="tiempoMaxEnSegundos" id="tiempoMaxEnSegundos" value="00" min="0" max="59" class="inputTextCorto focusContenido tiempoValues"></div>
+						</div>
+					</div>
+					<div class="configConjunto" data-langlocation="1,config,contnAlternativas" data-langmod="title" data-langactual="es" title="Seleccione la cantidad de alternativas de respuesta con letra. Máximo 27">
+						<label for="nAlternativas" data-langlocation="1,config,alternativas" data-langmod="html" data-langactual="es">Número de alternativas de respuesta:</label>
+						<input name="nAlternativas" id="nAlternativas" type="number" value="4" min="2" max="27" class="inputTextCorto focusContenido maximo2caracteres">
+					</div>
+					<div class="configConjunto" data-langlocation="1,config,contnnumPregMax" data-langmod="title" data-langactual="es" title="Introduzca el número de preguntas a generar">
+						<label for="numPregMax" data-langlocation="1,config,cantidadpreg" data-langmod="html" data-langactual="es">Cantidad de preguntas:</label>
+						<input name="numPregMax" id="numPregMax" type="number" value="100" min="1" class="configNumeroPreg focusContenido maximo3caracteres">
+					</div>
+					<div class="configConjunto" data-langlocation="1,config,contnumPregInicial" data-langmod="title" data-langactual="es" title="Introduzca el número de la primera pregunta del test">
+						<label for="numPregInicial" data-langlocation="1,config,pregInicial" data-langmod="html" data-langactual="es">Número de pregunta inicial:</label>
+						<input name="numPregInicial" id="numPregInicial" type="number" value="1" min="1" class="inputTextCorto focusContenido maximo3caracteres">
+					</div>
+					<div class="configConjunto" data-langlocation="1,config,conttituloTest1" data-langmod="title" data-langactual="es" title="Introduzca el título del test a realizar">
+						<label for="tituloTest1" data-langlocation="1,config,titulo" data-langmod="html" data-langactual="es">Título:</label>
+						<input name="tituloTest1" id="tituloTest1" type="text" class="focusContenido" data-langlocation="1,config,phtitulo" data-langmod="placeholder" data-langactual="es" placeholder="Introduzca el título del test">
+					</div>
+					<div class="configConjuntoPie">
+						<div class="contenedorDonarF1 divConfigPie">
+							<form action="https://www.paypal.com/donate" method="post" target="_blank">
+								<input type="hidden" name="hosted_button_id" value="CV84HH5WUJ3Y8" />
+								<input class="botonDonar" type="image" data-langlocation="imgDonar" data-langmod="src, alt, title" data-langactual="es" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_donateCC_LG.gif" name="submit" title="PayPal - ¡La forma más segura y fácil de pagar en línea!" alt="Donar con botón PayPal" />
+							</form>						
+						</div>
+						<div class="divConfigPie">
+							<input type="button"  id="botonCrearTest" value="Crear hoja" data-langlocation="1,config,botonCrearTest" data-langmod="value,title" data-langactual="es" title="Cliquéame para trabajar los parámetros que ha introducido y crear el test. En la ventana siguiente podrá clicar en comenzar el test">
+						</div>
+						<div class="divConfigPie">
+							<input id="botonInstruccionesF1" type="button"  class="circle botonInstrucciones" value="?" data-areaaexplicar="fase1Configuracion" data-langlocation="1,config,btninstruc" data-langmod="title" data-langactual="es" title="Cliquéame si tienes dudas acerca de la aplicación">
+							<div class="primerAcceso">
+								<p data-langlocation="primerAcceso1" data-langmod="html" data-langactual="es">Recomendamos acceder al submenú "Instrucciones rápidas" si es su primer acceso a Lobotest</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="contenedorPDFsFase1">
+					<div id="botoneraPDFFase1">
+						<div id="botoneraPDFFase1-pestanas">
+							<div id="botoneraPDFFase1-pestanas-pestana1" class="botoneraPDFFase1-pestanas-pestana pestanaActiva">
+								<p data-langlocation="1,contenedorPDFsFase1,pestana1" data-langmod="html" data-langactual="es">Pestaña 1</p>
+							</div>
+							<div id="botoneraPDFFase1-pestanas-pestana2" class="botoneraPDFFase1-pestanas-pestana pestanaNoActiva">
+								<p data-langlocation="1,contenedorPDFsFase1,pestana2" data-langmod="html" data-langactual="es">Pestaña 2</p>
+							</div>
+							<div id="botoneraPDFFase1-pestanas-pestana3BotonDobleArchivo" class="botonBarraConfig">
+								<p>📄📄</p>
+								<input type="file" id="file-open12" class="file-select" accept="application/pdf, image/png, .jpeg, .jpg, image/gif" multiple>
+							</div>
+						</div>
+						<div id="botoneraPDFFase1-contenidos">
+							<div id="botoneraPDFFase1-contenidos-contenido1" class="botoneraPDFFase1-contenidos-contenido">
+								<div id="modalCarga1" class="modalCarga"></div>
+								<div id="pdf1EnFase1" class="contenedorPDFFase1 contenedorPaginas">
+									<div id="pdf1EnFase1Contenedor" class="pdfEnFase1Contenedor">
+										<div class="contenidoInicial" id="contenidoInicial1" data-contenedor="F1PDF1">
+											<p data-langlocation="1,contenedorPDFsFase1,pcontenidoInicial1" data-langmod="html" data-langactual="es">Ningún PDF o imagen seleccionado para contenedor primario</p>
+										</div>
+									</div>
+								</div>
+								<div id="contenedorInputFile1" class="contenedorInputFile" data-langlocation="1,contenedorPDFsFase1,contenedorInputFile1" data-langmod="title" data-langactual="es" title="Cliquéame para introducir un archivo PDF o imagen a este visor y al contenedor 1 de la próxima ventana">
+									<div id="botonInputFile1" class="botonInputFile botonInputFileFase1" data-idInput="file-open1" data-disabled="false" data-langlocation="1,contenedorPDFsFase1,inputfile1" data-langmod="html" data-langactual="es">Seleccionar archivo 1</div>
+									<input type="file" id="file-open1" class="file-select" accept="application/pdf, image/png, .jpeg, .jpg, image/gif" multiple>
+								</div>
+							</div>
+							<div id="botoneraPDFFase1-contenidos-contenido2" class="botoneraPDFFase1-contenidos-contenido">
+								<div id="modalCarga2" class="modalCarga"></div>
+								<div id="pdf2EnFase1" class="contenedorPDFFase1 contenedorPaginas">
+									<div id="pdf2EnFase1Contenedor" class="pdfEnFase1Contenedor">
+										<div class="contenidoInicial" id="contenidoInicial2" data-contenedor="F1PDF2">
+											<p data-langlocation="1,contenedorPDFsFase1,pcontenidoInicial2" data-langmod="html" data-langactual="es">Ningún PDF o imagen seleccionado para contenedor secundario</p>
+										</div>
+									</div>
+								</div>
+								<div id="contenedorInputFile2" class="contenedorInputFile" data-langlocation="1,contenedorPDFsFase1,contenedorInputFile2" data-langmod="title" data-langactual="es" title="Cliquéame para introducir un archivo PDF o imagen a este visor y al contenedor 2 de la próxima ventana">
+									<div id="botonInputFile2" class="botonInputFile botonInputFileFase1" data-idInput="file-open2" data-disabled="false" data-langlocation="1,contenedorPDFsFase1,inputfile2" data-langmod="html" data-langactual="es">Seleccionar archivo 2</div>
+									<input type="file" id="file-open2" class="file-select" accept="application/pdf, image/png, .jpeg, .jpg, image/gif" multiple>
+								</div>
+							</div>
+						</div>
+					</div>
+					<canvas id="page_canvasPDF2img"></canvas>
+				</div>
+			</div>
+		</div>
+		<div id="modalInstrucciones">
+			<div id="contenedorInstrucciones">
+				<div id="tituloInstrucciones">
+					<h3 data-langlocation="1,instruc,tituloinst" data-langmod="html" data-langactual="es">Instrucciones de la hoja de respuestas interactiva</h3>
+				</div>
+				<div id="contenidoInstrucciones">
+					<div id="Panel_izquierdo" class="menuInstrucciones" data-langlocation="contenidoInstruc,fase1Config" data-langmod="html" data-langactual=""></div>
+					<div id="instruccionesControlesArchivo" class="menuInstrucciones" data-langlocation="contenidoInstruc,fase2PestanaContenedor" data-langmod="html" data-langactual=""></div>
+					<div id="instruccionesOpcionesAnadidas" class="menuInstrucciones" data-langlocation="contenidoInstruc,fase2PestanaOpciones" data-langmod="html" data-langactual=""></div>
+					<div id="instruccionesOpcionesBasicas" class="menuInstrucciones" data-langlocation="contenidoInstruc,fase2OpcionesBasicas" data-langmod="html" data-langactual=""></div>
+				</div>
+				<div id="pieInstrucciones">
+					<div id="botonesInstrucciones">
+						<input id="botonVolverInstrucciones" type="button" value="Volver" title="Cliquéame para cerrar la ventana de instrucciones">
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var permisosInputFileRead=false;
+			var permisosInputFileWrite=false;
+			var isAppAndroid=false;
+			var isTerminalAndroid=false;
+			var cordovaScript;
+
+			/*Comprobamos si el terminal de ejecución es android (es posible que esté siendo ejecutado desde app android o navegador web)*/
+			if (/android/i.test(navigator.userAgent))
+			{
+				isTerminalAndroid=true;
+				cordovaScript = document.createElement('script');
+				cordovaScript.type = 'text/javascript';
+				cordovaScript.src = 'cordova.js';
+
+				cordovaScript.onload =  function ()
+				{
+					document.addEventListener('deviceready', async function()
+					{
+						/*Comprobamos si se ejecuta desde la app android o navegador web*/
+						if (window.cordova)
+						{
+							isAppAndroid=true;
+							const PROMESA_PERMISO_LECTURA = await checkPermisoLectura();
+							const PROMESA_PERMISO_ESCRITURA = await checkPermisoEscritura();
+
+							permisosInputFileRead = Boolean(PROMESA_PERMISO_LECTURA);
+							permisosInputFileWrite = Boolean(PROMESA_PERMISO_ESCRITURA);
+						}
+					});
+				};
+
+				document.body.appendChild(cordovaScript);
+			}
+		</script>
+	</body>
+</html>
