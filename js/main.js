@@ -92,7 +92,7 @@
 						};
 						OBJ_CONTROL_INPUT_ARCHIVOS.accionesAlFinalizarInputFile=()=>{
 							setTimeout(
-								function(e)
+								() =>
 								{
 									actualizarHabilitacionBotonesMenusRapidos();
 									mostrarOcultarBotonesBarraConfigContenedorPDFs();
@@ -169,7 +169,7 @@
 						OBJ_CONTROL_PAGINAS_F2_2.iniciarControladorPaginacion();
 
 						OBJ_CONTROL_PAGINAS_F2_1.accionesAlFinalizarDeIntroducirContenidosPaginas=
-							function ()
+							() =>
 							{
 								if(document.getElementById("botonBarraConfigPDF1MostrarOcultarPizarra").classList.contains("botonActivo"))
 								{
@@ -178,7 +178,7 @@
 							};
 
 						OBJ_CONTROL_PAGINAS_F2_2.accionesAlFinalizarDeIntroducirContenidosPaginas=
-							function ()
+							() =>
 							{
 								if(document.getElementById("botonBarraConfigPDF2MostrarOcultarPizarra").classList.contains("botonActivo"))
 								{
@@ -187,34 +187,34 @@
 							};
 
 						OBJ_CONTROL_PAGINAS_F2_1.accionesAlFinalizarConPaginas=
-							function()
+							() =>
 							{
 								OBJ_PIZARRA1.redimensionarPizarra();
 								OBJ_ZOOM_CONTENEDOR1.activarZoom();
 							};
 
 						OBJ_CONTROL_PAGINAS_F2_2.accionesAlFinalizarConPaginas=
-							function()
+							() =>
 							{
 								OBJ_PIZARRA2.redimensionarPizarra();
 								OBJ_ZOOM_CONTENEDOR2.activarZoom();
 							};
 
 						OBJ_CONTROL_PAGINAS_F2_1.accionesAlFinalizarSinPaginas=
-							function()
+							() =>
 							{
 								OBJ_PIZARRA1.redimensionarPizarra();
 								OBJ_ZOOM_CONTENEDOR1.desactivarZoom();
 							};
 
 						OBJ_CONTROL_PAGINAS_F2_2.accionesAlFinalizarSinPaginas=
-							function()
+							() =>
 							{
 								OBJ_PIZARRA2.redimensionarPizarra();
 								OBJ_ZOOM_CONTENEDOR2.desactivarZoom();
 							};
 
-				OBJ_PIZARRA1.accionesAntesDeRedimensionar=()=>
+				OBJ_PIZARRA1.accionesAntesDeRedimensionar= ()=>
 				{
 					let contenedorPDF1Height= window.getComputedStyle(CONTENEDOR_PDF1).getPropertyValue("height");
 					let contenedorPDF2EnImagenesHeight= window.getComputedStyle(CONTENEDOR_PDF1_EN_IMAGENES).getPropertyValue("height");
@@ -278,9 +278,9 @@
 				//Es la primera vez que el usuario accede a la web;
 				FASE1CONFIGURACION.querySelector(".primerAcceso").style.display="block";
 				FASE1CONFIGURACION.querySelector("#botonInstruccionesF1").style.boxShadow="0px 0px 10px 7px #ffff00";
-				FASE1CONFIGURACION.querySelector(".primerAcceso").addEventListener("click",function()
+				FASE1CONFIGURACION.querySelector(".primerAcceso").addEventListener("click", (e) =>
 				{
-					this.style.display="none";
+					e.target.style.display="none";
 					FASE1CONFIGURACION.querySelector("#botonInstruccionesF1").style.boxShadow="initial";
 				});
 			}
@@ -978,7 +978,7 @@
 				function()
 				{
 					document.getElementById("tiempoRestante").setAttribute("disabled", "");
-					let tiempoTranscurrido=this.getTiempoTranscurrido();
+					let tiempoTranscurrido= this.getTiempoTranscurrido();
 					let alFinalizar = "<div class='alFinalizarContenidoMiAlert'><p data-langlocation='miAlert,hasTardado' data-langmod='html' data-langactual='es'>Has tardado: </p>";
 					let tiempo = [];
 					if (tiempoTranscurrido[0] > 0)
@@ -1155,15 +1155,9 @@
 						_botonId: "botonBarraConfigPDF1Deshacer",
 						_tiempoTimeout: 250,
 						_tiempoIntervalo: 100,
-						_accionesAlFinalizar: function()
-						{
-							DIV_MENU_RAPIDO1.style.opacity=0.7;
-						},
-						_accionesAlClick: function()
-						{
-							OBJ_PIZARRA1.deshacerUltimoGrupoDeLineasGuardadas();
-						},
-						_accionesAlMantener: function()
+						_accionesAlFinalizar: () =>	DIV_MENU_RAPIDO1.style.opacity=0.7,
+						_accionesAlClick: () => OBJ_PIZARRA1.deshacerUltimoGrupoDeLineasGuardadas(),
+						_accionesAlMantener: () =>
 						{
 							DIV_MENU_RAPIDO1.style.opacity=0.1;
 							OBJ_PIZARRA1.deshacerUltimaLineaGuardada();
@@ -1174,15 +1168,11 @@
 						_botonId: "botonBarraConfigPDF1Rehacer",
 						_tiempoTimeout: 250,
 						_tiempoIntervalo: 100,
-						_accionesAlFinalizar: function()
-						{
-							DIV_MENU_RAPIDO1.style.opacity=0.7;
-						},
-						_accionesAlClick: function()
-						{
-							OBJ_PIZARRA1.rehacerUltimoGrupoDeLineasGuardadas();
-						},
-						_accionesAlMantener: function()
+						_accionesAlFinalizar: () =>
+							DIV_MENU_RAPIDO1.style.opacity=0.7,
+						_accionesAlClick: () =>
+							OBJ_PIZARRA1.rehacerUltimoGrupoDeLineasGuardadas(),
+						_accionesAlMantener: () =>
 						{
 							DIV_MENU_RAPIDO1.style.opacity=0.1;
 							OBJ_PIZARRA1.rehacerUltimaLineaDeshecha();
@@ -1193,15 +1183,11 @@
 						_botonId: "botonBarraConfigPDF2Deshacer",
 						_tiempoTimeout: 250,
 						_tiempoIntervalo: 100,
-						_accionesAlFinalizar: function()
-						{
-							DIV_MENU_RAPIDO2.style.opacity=0.7;
-						},
-						_accionesAlClick: function()
-						{
-							OBJ_PIZARRA2.deshacerUltimoGrupoDeLineasGuardadas();
-						},
-						_accionesAlMantener: function()
+						_accionesAlFinalizar: () =>
+							DIV_MENU_RAPIDO2.style.opacity=0.7,
+						_accionesAlClick: () =>
+							OBJ_PIZARRA2.deshacerUltimoGrupoDeLineasGuardadas(),
+						_accionesAlMantener: () =>
 						{
 							DIV_MENU_RAPIDO2.style.opacity=0.1;
 							OBJ_PIZARRA2.deshacerUltimaLineaGuardada();
@@ -1212,25 +1198,20 @@
 						_botonId: "botonBarraConfigPDF2Rehacer",
 						_tiempoTimeout: 250,
 						_tiempoIntervalo: 100,
-						_accionesAlFinalizar: function()
-						{
-							DIV_MENU_RAPIDO2.style.opacity=0.7;
-						},
-						_accionesAlClick: function()
-						{
-							OBJ_PIZARRA2.rehacerUltimoGrupoDeLineasGuardadas();
-						},
-						_accionesAlMantener: function()
+						_accionesAlFinalizar: () =>
+							DIV_MENU_RAPIDO2.style.opacity=0.7,
+						_accionesAlClick: () =>
+							OBJ_PIZARRA2.rehacerUltimoGrupoDeLineasGuardadas(),
+						_accionesAlMantener: () =>
 						{
 							DIV_MENU_RAPIDO2.style.opacity=0.1;
 							OBJ_PIZARRA2.rehacerUltimaLineaDeshecha();
 						}
 					});
 
-					FASE2TEST.querySelectorAll(".divBotonConfigPDF").forEach(function(elemento)
-					{
-						elemento.style.boxShadow = "rgba(221, 221, 221, 0.5) 5px 5px 0px 5px";
-					});
+					FASE2TEST.querySelectorAll(".divBotonConfigPDF").forEach(
+						(elemento) => elemento.style.boxShadow = "rgba(221, 221, 221, 0.5) 5px 5px 0px 5px"
+					);
 
 					OBJ_ZOOM_CONTENEDOR1.aplicarZoomTactilDeImagenes(
 					{
@@ -1248,7 +1229,7 @@
 							CONTENEDOR_PDF1_Y_PIZARRA.style.scrollBehavior='initial';
 						},
 						_accionesAlLevantar: ()=>{
-							timeoutUltimaLineaPizarra=setTimeout(function(){OBJ_PIZARRA1.activado=true;},500);
+							timeoutUltimaLineaPizarra=setTimeout(() => OBJ_PIZARRA1.activado=true, 500);
 							CONTENEDOR_PDF1_Y_PIZARRA.style.scrollBehavior = antiguoScrollBehaviorPreZoom;
 							OBJ_PIZARRA1.redimensionarPizarra(); 
 							OBJ_PIZARRA1.OnObserver();
@@ -1272,7 +1253,7 @@
 							CONTENEDOR_PDF1_Y_PIZARRA.style.scrollBehavior='initial';
 						},
 						_accionesAlLevantar: ()=>{
-							timeoutUltimaLineaPizarra=setTimeout(function(){OBJ_PIZARRA1.activado=true;},500);
+							timeoutUltimaLineaPizarra=setTimeout(() =>OBJ_PIZARRA1.activado=true, 500);
 							CONTENEDOR_PDF1_Y_PIZARRA.style.scrollBehavior = antiguoScrollBehaviorPreZoom;
 							OBJ_PIZARRA1.redimensionarPizarra(); 
 							OBJ_PIZARRA1.OnObserver();
@@ -1296,7 +1277,7 @@
 							CONTENEDOR_PDF2_Y_PIZARRA.style.scrollBehavior='initial';
 						},
 						_accionesAlLevantar: ()=>{
-							timeoutUltimaLineaPizarra=setTimeout(function(){OBJ_PIZARRA2.activado=true;},500);
+							timeoutUltimaLineaPizarra=setTimeout(() =>OBJ_PIZARRA2.activado=true, 500);
 							CONTENEDOR_PDF2_Y_PIZARRA.style.scrollBehavior = antiguoScrollBehaviorPreZoom;
 							OBJ_PIZARRA2.redimensionarPizarra(); 
 							OBJ_PIZARRA2.OnObserver();
@@ -1320,7 +1301,7 @@
 								CONTENEDOR_PDF2_Y_PIZARRA.style.scrollBehavior='initial';
 							},
 							_accionesAlLevantar: ()=>{
-								timeoutUltimaLineaPizarra=setTimeout(function(){OBJ_PIZARRA2.activado=true;},500);
+								timeoutUltimaLineaPizarra=setTimeout(() => OBJ_PIZARRA2.activado=true, 500);
 								CONTENEDOR_PDF2_Y_PIZARRA.style.scrollBehavior = antiguoScrollBehaviorPreZoom;
 								OBJ_PIZARRA2.redimensionarPizarra(); 
 								OBJ_PIZARRA2.OnObserver();
@@ -1465,15 +1446,12 @@
 						_botonId:"botonBarraConfigPDF1Deshacer", 
 						_tiempoTimeout:250, 
 						_tiempoIntervalo:100, 
-						_accionesAlMantener: ()=>{
+						_accionesAlMantener: () => {
 							OBJ_PIZARRA1.deshacerUltimaLineaGuardada();
 							DIV_MENU_RAPIDO1.style.opacity=0.1;
 						}, 
-						_accionesAlClick: ()=>{OBJ_PIZARRA1.deshacerUltimoGrupoDeLineasGuardadas()},
-						_accionesAlFinalizar: function()
-						{
-							DIV_MENU_RAPIDO1.style.opacity=0.7;
-						}
+						_accionesAlClick: () => OBJ_PIZARRA1.deshacerUltimoGrupoDeLineasGuardadas(),
+						_accionesAlFinalizar: () => DIV_MENU_RAPIDO1.style.opacity=0.7
 					});
 
 					crearBotonClickOPresionContinuaMouse(
@@ -1485,11 +1463,8 @@
 							OBJ_PIZARRA1.rehacerUltimaLineaDeshecha();
 							DIV_MENU_RAPIDO1.style.opacity=0.1;
 						} , 
-						_accionesAlClick: ()=>{OBJ_PIZARRA1.rehacerUltimoGrupoDeLineasGuardadas()},
-						_accionesAlFinalizar: function()
-						{
-							DIV_MENU_RAPIDO1.style.opacity=0.7;
-						}
+						_accionesAlClick: ()=>OBJ_PIZARRA1.rehacerUltimoGrupoDeLineasGuardadas(),
+						_accionesAlFinalizar: () => DIV_MENU_RAPIDO1.style.opacity=0.7
 					});
 
 					crearBotonClickOPresionContinuaMouse(
@@ -1501,11 +1476,8 @@
 							OBJ_PIZARRA2.deshacerUltimaLineaGuardada();
 							DIV_MENU_RAPIDO2.style.opacity=0.1;
 						}, 
-						_accionesAlClick: ()=>{OBJ_PIZARRA2.deshacerUltimoGrupoDeLineasGuardadas()},
-						_accionesAlFinalizar: function()
-						{
-							DIV_MENU_RAPIDO2.style.opacity=0.7;
-						}
+						_accionesAlClick: ()=>OBJ_PIZARRA2.deshacerUltimoGrupoDeLineasGuardadas(),
+						_accionesAlFinalizar: () => DIV_MENU_RAPIDO2.style.opacity=0.7
 					});
 
 					crearBotonClickOPresionContinuaMouse(
@@ -1518,15 +1490,12 @@
 							DIV_MENU_RAPIDO2.style.opacity=0.1;
 						} , 
 						_accionesAlClick: ()=>{OBJ_PIZARRA2.rehacerUltimoGrupoDeLineasGuardadas()},
-						_accionesAlFinalizar: function()
-						{
-							DIV_MENU_RAPIDO2.style.opacity=0.7;
-						}
+						_accionesAlFinalizar: () => DIV_MENU_RAPIDO2.style.opacity=0.7
 					});
 
 					crearListenerPrecerrado();
 
-					window.addEventListener('beforeunload', function(e)
+					window.addEventListener('beforeunload', (e) =>
 					{
 						if(!testGuardado && !preguntadoSiSalir)
 						{
@@ -1860,6 +1829,11 @@
 							</div>`;
 				}
 
+				rsp += `<div class="lineaEvaluacion">
+							<p class="lineaEvaluacionApartado1" data-langlocation="evaluacion,tiempoInicial" data-langmod="html" data-langactual="es">Tiempo inicial: </p>
+							<p class="lineaEvaluacionApartado2">${OBJ_TEMPORIZADOR_TEST.getMinutosInicialesTemporizador(true)}:${OBJ_TEMPORIZADOR_TEST.getSegundosInicialesTemporizador(true)}</p>
+						</div>`;
+
 				if(OBJ_TEMPORIZADOR_TEST.getMinutosRestantesTemporizador()>0 || OBJ_TEMPORIZADOR_TEST.getSegundosRestantesTemporizador()>0)
 				{
 					rsp += `<div class="lineaEvaluacion">
@@ -1867,6 +1841,7 @@
 								<p class="lineaEvaluacionApartado2">${OBJ_TEMPORIZADOR_TEST.getMinutosRestantesTemporizador(true)}:${OBJ_TEMPORIZADOR_TEST.getSegundosRestantesTemporizador(true)}!!!!</p>
 							</div>`;
 				}
+
 
 				if(PREGUNTAS_NO_CORREGIDAS.length>0)
 				{
@@ -2165,6 +2140,15 @@
 												hyphens: auto;
 											}
 
+											.leyendaColores {
+												display: grid;
+												grid-template-columns: repeat(auto-fit, minmax(min(100%, 100px), 1fr));
+											}
+
+											.leyendaColores > div {
+												outline: 1px solid #fff;
+											}
+
 											@media (max-height: 600px)
 											{
 												#respuestasResumenGuardado
@@ -2180,7 +2164,7 @@
 												${evaluar(_trsFilasPreguntas)}
 											</div>
 											<div id="respuestas">
-												<div id="leyendaColores">
+												<div class="leyendaColores" id="leyendaColores">
 													<div>
 														<div data-langlocation="leyendaResumenGuardado,pregSinMarcar" data-langmod="html" data-langactual="es">Pregunta sin marcar: </div>
 														<span style="color:${colorPreguntaSinMarcar};">&#x25A0;</span>
@@ -2340,14 +2324,9 @@
 								{
 									fileEntry.createWriter(function (fileWriter)
 									{
-										fileWriter.onwriteend = function () {
-											console.log("Descarga exitosa",'Archivo descargado en: ' + fileEntry.toURL());
-										};
+										fileWriter.onwriteend = () => console.log("Descarga exitosa",'Archivo descargado en: ' + fileEntry.toURL());
 
-										fileWriter.onerror = function (e)
-										{
-											OBJ_TOOL_ALERT.mostrarAlert("Descargar fallida",'Error en la descarga: ' + e.toString());
-										};
+										fileWriter.onerror = (e) => OBJ_TOOL_ALERT.mostrarAlert("Descargar fallida",'Error en la descarga: ' + e.toString());
 
 										// Escribir el contenido en el archivo
 										const blob = new Blob([contenidoArchivo], { type: 'text/plain;charset=utf-8' });
@@ -2673,14 +2652,6 @@
 //	/Para cambiar estilos
 //================================
 
-//===========================
-//	Introducción de archivos
-//===========================
-
-//===========================
-//	/Introducción de archivos
-//===========================
-
 			function compruebaTiempoValues(e)
 			{
 				const ALTER=e.target;
@@ -2824,9 +2795,9 @@
 //===========================
 //	Comprobar colores
 //===========================
-			document.getElementById("sombraTexto").addEventListener("change", function(e)
+			document.getElementById("sombraTexto").addEventListener("change", (e) =>
 			{
-				switch (this.value)
+				switch (e.target.value)
 				{
 					case "auto":
 					{
@@ -2855,7 +2826,7 @@
 					default:
 					break;
 				}
-				MiLocalStorage.modificar("colores", {sombraTexto: this.value});
+				MiLocalStorage.modificar("colores", {sombraTexto: e.target.value});
 			});
 
 			function comprobarSiElTextoBotonesDebeTenerSombraYSet()
@@ -2939,10 +2910,7 @@
 				//para que, durante el movimiento, si cambia de dirección no continúe moviéndose en dirección errónea
 				clearTimeout(temporizadorActualizarLastY);
 				temporizadorActualizarLastY= setTimeout(
-					function(e)
-					{
-						lastY = _e.touches[0].clientY;
-					}
+					() => lastY = _e.touches[0].clientY
 					,250);
 				//Si activo las lineas "lastY = e.touches[0].clientY;" de debajo, no hay aceleración de movimiento en el _divObjetivo,
 				// que entonces no haría falta el Timeout de arriba
@@ -2956,10 +2924,7 @@
 				//para que, durante el movimiento, si cambia de dirección no continúe moviéndose en dirección errónea
 				clearTimeout(temporizadorActualizarLastX);
 				temporizadorActualizarLastX= setTimeout(
-					function(e)
-					{
-						lastX = _e.touches[0].clientX;
-					}
+					() => lastX = _e.touches[0].clientX
 					,250);
 				//Si activo las lineas "lastX = e.touches[0].clientX;" de debajo, no hay aceleración de movimiento en el _divObjetivo,
 				// que entonces no haría falta el Timeout de arriba
@@ -3123,22 +3088,19 @@
 
 			async function checkPermisoEscritura()
 			{
-				if (isAppAndroid)
-				{
-					const PERMISOS = cordova.plugins.permissions;
-					const PERMISO_ESCRITURA = await new Promise(resolve =>
-					{
-						PERMISOS.checkPermission(PERMISOS.WRITE_EXTERNAL_STORAGE, status => {
-							resolve(status.hasPermission);
-						}, null);
-					});
-			
-					return PERMISO_ESCRITURA;
+				if (!isAppAndroid){
+					return false;
 				}
-				else
+
+				const PERMISOS = cordova.plugins.permissions;
+				const PERMISO_ESCRITURA = await new Promise(resolve =>
 				{
-					return false; // Si no se está ejecutando en un entorno Android
-				}
+					PERMISOS.checkPermission(PERMISOS.WRITE_EXTERNAL_STORAGE, status => {
+						resolve(status.hasPermission);
+					}, null);
+				});
+
+				return PERMISO_ESCRITURA;
 			}
 
 //==========================================================
@@ -3170,10 +3132,9 @@
 							attrElementoATraducir=attrElementoATraducir.trim().replace(/\s*,\s*/g, ',');
 							const ATTR_EN_JSON = attrElementoATraducir.split(',');
 
-							for (let i=0; i<ATTR_EN_JSON.length; i++)
-							{
-								modificarLoQueVeElUsuario(ELEMENTO_A_TRADUCIR, localizacion[ATTR_EN_JSON[i]], ATTR_EN_JSON[i]);
-							}
+							ATTR_EN_JSON.forEach(attr => 
+								modificarLoQueVeElUsuario(ELEMENTO_A_TRADUCIR, localizacion[attr], attr)
+							);
 
 							ELEMENTO_A_TRADUCIR.dataset.langactual = langActual;
 						}
@@ -3228,12 +3189,12 @@
 //	EVENT LISTENER
 //==========================================================
 
-document.querySelector("#botonCerrarVisorImagenes").addEventListener("click",function()
-{
-	document.querySelector("#visorImagenes").style.display="none";
-});
+document.querySelector("#botonCerrarVisorImagenes").addEventListener("click",
+() =>
+	document.querySelector("#visorImagenes").style.display="none"
+);
 
-document.querySelector('#contenidoInstrucciones').addEventListener("click",function(e)
+document.querySelector('#contenidoInstrucciones').addEventListener("click", (e) =>
 {
 	if(e.target.classList.contains("imgInstrucRapidas"))
 	{
@@ -3261,9 +3222,9 @@ OBJ_TOOL_ZOOM.aplicarZoomTactilDeImagenes(
 	_widthMinimoZoom: 100
 });
 
-document.querySelectorAll('.maximo2caracteres').forEach(function(input)
+document.querySelectorAll('.maximo2caracteres').forEach((input) =>
 {
-    input.addEventListener('input', function(event)
+    input.addEventListener('input', (event) =>
     {
 		const EXPREGULAR2 = /^\d{0,2}$/;
         if (!EXPREGULAR2.test(event.target.value))
@@ -3273,9 +3234,9 @@ document.querySelectorAll('.maximo2caracteres').forEach(function(input)
     });
 });
 
-document.querySelectorAll('.maximo3caracteres').forEach(function(input)
+document.querySelectorAll('.maximo3caracteres').forEach((input) =>
 {
-    input.addEventListener('input', function(event)
+    input.addEventListener('input', (event) =>
     {
 		const EXPREGULAR3 = /^\d{0,3}$/;
         if (!EXPREGULAR3.test(event.target.value))
@@ -3285,9 +3246,9 @@ document.querySelectorAll('.maximo3caracteres').forEach(function(input)
     });
 });
 
-document.querySelectorAll('.tiempoValues').forEach(function(input)
+document.querySelectorAll('.tiempoValues').forEach((input)=>
 {
-    input.addEventListener('input', function(event)
+    input.addEventListener('input', (event)=>
     {
 		const EXPREGULAR_TIEMPO = /^([0-9]|[0-9][0-9])$/;
         if (!EXPREGULAR_TIEMPO.test(event.target.value))
@@ -3297,9 +3258,9 @@ document.querySelectorAll('.tiempoValues').forEach(function(input)
     });
 });
 
-document.querySelectorAll('.tiempoValues').forEach(function(input)
+document.querySelectorAll('.tiempoValues').forEach((input)=>
 {
-    input.addEventListener('blur', function(e)
+    input.addEventListener('blur', (e) =>
     {
         compruebaTiempoValues(e);
     });
@@ -3352,7 +3313,7 @@ document.querySelectorAll(".botonInstrucciones").forEach(e => e.addEventListener
     document.getElementById('modalInstrucciones').style.display='flex';
 }));
 
-document.getElementById("pestanasPestaneroFase2").addEventListener("click", function(e)
+document.getElementById("pestanasPestaneroFase2").addEventListener("click", (e) =>
 {
 	switch (e.target.dataset.value)
 	{
@@ -3382,7 +3343,7 @@ function comprobarResaltadoPestanasFase2()
     getValorCSS2(masAccionesTabPanel, "display") != "none";
 }
 
-TAB_CONTAINER.addEventListener("mouseover", function(e)
+TAB_CONTAINER.addEventListener("mouseover", () =>
 {
 	clearTimeout(timeOutBlurDetailsMenuFase2);
 	timeOutBlurDetailsMenuFase2 = null;
@@ -3398,7 +3359,7 @@ FASE2TEST.addEventListener("mouseover", (e) =>
 		{
 			if(timeOutBlurDetailsMenuFase2==null)
 			{
-				timeOutBlurDetailsMenuFase2=setTimeout(function()
+				timeOutBlurDetailsMenuFase2=setTimeout(() =>
 				{
 					setToggleValoresCSS(FASE2TEST.querySelectorAll('.contenidoPestanaMenuFase2'),"display","none");
 					setToggleValoresAtributo(FASE2TEST.querySelectorAll('.pestanaMenuFase2'),"data-abierto","false");
@@ -3409,13 +3370,13 @@ FASE2TEST.addEventListener("mouseover", (e) =>
 	}
 });
 
-TAB_CONTAINER.addEventListener("touchstart", function()
+TAB_CONTAINER.addEventListener("touchstart", () =>
 {
 	clearTimeout(timeOutBlurDetailsMenuFase2);
 	timeOutBlurDetailsMenuFase2 = null;
 });
 
-TAB_CONTAINER.addEventListener("touchenter", function()
+TAB_CONTAINER.addEventListener("touchenter", () =>
 {
 	clearTimeout(timeOutBlurDetailsMenuFase2);
 	timeOutBlurDetailsMenuFase2 = null;
@@ -3427,7 +3388,7 @@ FASE2TEST.addEventListener("touchstart", (e) =>
 	{
 		if(timeOutBlurDetailsMenuFase2==null)
 		{
-			timeOutBlurDetailsMenuFase2 = setTimeout(function()
+			timeOutBlurDetailsMenuFase2 = setTimeout(() =>
 			{
 				setToggleValoresCSS(FASE2TEST.querySelectorAll('.contenidoPestanaMenuFase2'),"display","none");
 				setToggleValoresAtributo(FASE2TEST.querySelectorAll('.pestanaMenuFase2'),"data-abierto","false");
@@ -3471,7 +3432,7 @@ document.querySelectorAll(".botonInputFile").forEach(e => e.addEventListener("cl
 	document.getElementById(ID_INPUT).click();
 }));
 
-document.getElementById("configColores").addEventListener("input", function(e)
+document.getElementById("configColores").addEventListener("input", (e) =>
 {
 	if (e.target.tagName === 'INPUT' && e.target.type === 'color')
 	{
@@ -3485,12 +3446,11 @@ document.getElementById("configColores").addEventListener("input", function(e)
 	}	  
 });
 
-document.getElementById("nAlternativas").addEventListener("blur", function(e)
-{
-    compruebaAlternativas();
-});
+document.getElementById("nAlternativas").addEventListener("blur",
+() => compruebaAlternativas());
 
-BOTON_CREAR_TEST.addEventListener("click", function(e)
+BOTON_CREAR_TEST.addEventListener("click",
+() =>
 {
 	const HORAS=document.getElementById("tiempoMaxEnHoras").value;
 	const MINUTOS=document.getElementById("tiempoMaxEnMinutos").value;
@@ -3506,28 +3466,21 @@ BOTON_CREAR_TEST.addEventListener("click", function(e)
 });
 
 document.querySelectorAll(".focusContenido").forEach(
-	function(btn)
-	{
-        btn.addEventListener(
-            'focus',function()
-            {
-                this.select();
-            }
-        )
-    }
+	(btn) => btn.addEventListener('focus', (e) => e.target.select())
 );
 
-document.getElementById("botonVolverInstrucciones").addEventListener("click", function(e)
-{
-    document.getElementById('modalInstrucciones').style.display='none';
-});
+document.getElementById("botonVolverInstrucciones").addEventListener("click", 
+() =>
+    document.getElementById('modalInstrucciones').style.display='none'
+);
 
-document.getElementById("modalTest").addEventListener("click", function(e)
-{
-    empezarTest();
-});
+document.getElementById("modalTest").addEventListener("click", 
+() =>
+    empezarTest()
+);
 
-document.getElementById("botonConfigColores").addEventListener("click", function(e)
+document.getElementById("botonConfigColores").addEventListener("click",
+(e) =>
 {
 	switch (e.target.id)
 	{
@@ -3550,7 +3503,7 @@ document.getElementById("botonConfigColores").addEventListener("click", function
 
     document.querySelectorAll(".file-select").forEach(function (inputFile)
 	{
-        inputFile.addEventListener("click", function (e)
+        inputFile.addEventListener("click", (e) =>
 		{
 			if (isAppAndroid)
 			{
@@ -3569,8 +3522,8 @@ async function pedirPermisosInputFile()
 	permisosInputFileWrite = await pedirPermisoEscritura();
 }
 
-document.getElementById("file-open1").addEventListener("input", function (e) {
-	const files = this.files;
+document.getElementById("file-open1").addEventListener("input", (e) => {
+	const files = e.target.files;
 	if (files.length > 0)
 	{
 		cargandoPDFDesdeElInput = "file-open1";
@@ -3578,358 +3531,327 @@ document.getElementById("file-open1").addEventListener("input", function (e) {
 
 		OBJ_CONTROL_INPUT_ARCHIVOS.onInputFiles(files, ['pdf1EnFase1', 'ContenedorPDF1EnImagenes'], false);
 		document.getElementById("inputTextPaginaSeleccionadaPDF1").value = 1;
-		this.value = "";
+		e.target.value = "";
 	}
 });
 
-document.getElementById("file-open2").addEventListener("input", function (e)
+document.getElementById("file-open2").addEventListener("input", (e) =>
 {
-	const files = this.files;
+	const files = e.target.files;
 	if (files.length > 0)
 	{
 		cargandoPDFDesdeElInput = "file-open2";
 		FASE1CONFIGURACION.querySelector("#pdf2EnFase1 .contenidoInicial p").innerHTML = TEXTO_CARGANDO[langActual];
 		OBJ_CONTROL_INPUT_ARCHIVOS.onInputFiles(files, ['pdf2EnFase1', 'ContenedorPDF2EnImagenes'], false);
 		document.getElementById("inputTextPaginaSeleccionadaPDF2").value = 1;
-		this.value = "";
+		e.target.value = "";
 	}
 });
 
-document.getElementById("botoneraPDFFase1-pestanas-pestana3BotonDobleArchivo").addEventListener("click", function(e)
-{
-	document.getElementById("file-open12").click();
-});
+document.getElementById("botoneraPDFFase1-pestanas-pestana3BotonDobleArchivo").addEventListener("click",
+() =>
+	document.getElementById("file-open12").click()
+);
 
-document.getElementById("file-open12").addEventListener("input", function(e)
+document.getElementById("file-open12").addEventListener("input",
+(e) =>
 {
-	if(this.files[0]!=null)
+	if(e.target.files[0]!=null)
 	{
 		cargandoPDFDesdeElInput="file-open12";
 		FASE1CONFIGURACION.querySelector("#pdf1EnFase1 .contenidoInicial p").innerHTML=TEXTO_CARGANDO[langActual];
 		FASE1CONFIGURACION.querySelector("#pdf2EnFase1 .contenidoInicial p").innerHTML=TEXTO_CARGANDO[langActual];
-		OBJ_CONTROL_INPUT_ARCHIVOS.onInputFiles(this.files, ['pdf1EnFase1','pdf2EnFase1','ContenedorPDF1EnImagenes','ContenedorPDF2EnImagenes'], false);
+		OBJ_CONTROL_INPUT_ARCHIVOS.onInputFiles(e.target.files, ['pdf1EnFase1','pdf2EnFase1','ContenedorPDF1EnImagenes','ContenedorPDF2EnImagenes'], false);
 		document.getElementById("inputTextPaginaSeleccionadaPDF1").value=1;
 		document.getElementById("inputTextPaginaSeleccionadaPDF2").value=1;
-		this.value="";
+		e.target.value="";
 	}
 });
 
-function crearEventListenerMenuRapido()
-{
-	DIV_MENU_RAPIDO1.addEventListener("click", function(e)
-	{
-		switch (e.target.id)
-		{
+function crearEventListenerMenuRapido () {
+	DIV_MENU_RAPIDO1.addEventListener("click", (e) => {
+		switch (e.target.id) {
 			case "divBotonConfigPDF1":
-			{
-				setToggleValoresCSS(FASE2TEST.getElementsByClassName("barraConfigPDF1"), "display", ["none", "flex"]);
+				{
+					setToggleValoresCSS(FASE2TEST.getElementsByClassName("barraConfigPDF1"), "display", ["none", "flex"]);
 
-				if(getValorCSS("class","barraConfigPDF1", "display")=="flex")
-				{
-					anadirQuitarClass(document.getElementById('divBotonConfigPDF1'), "botonActivo",1);
+					if (getValorCSS("class", "barraConfigPDF1", "display") == "flex") {
+						anadirQuitarClass(document.getElementById('divBotonConfigPDF1'), "botonActivo", 1);
+					}
+
+					else {
+						anadirQuitarClass(document.getElementById('divBotonConfigPDF1'), "botonActivo", 0);
+					}
 				}
-				else
-				{
-					anadirQuitarClass(document.getElementById('divBotonConfigPDF1'), "botonActivo",0);
-				}
-			}
-			break;
+				break;
 			case "botonBarraConfigPDF1InputFile":
-			{
-				document.getElementById("file-open4").click();
-			}
-			break;
+				{
+					document.getElementById("file-open4").click();
+				}
+				break;
 			case "botonBarraConfigPDF1InputFileAdicion":
-			{
-				anadirQuitarClass(e.target, "botonActivo", 2);
-				FASE2TEST.querySelector('#file-open4AdicionCheckbox').checked = !FASE2TEST.querySelector('#file-open4AdicionCheckbox').checked;
+				{
+					anadirQuitarClass(e.target, "botonActivo", 2);
+					FASE2TEST.querySelector('#file-open4AdicionCheckbox').checked = !FASE2TEST.querySelector('#file-open4AdicionCheckbox').checked;
 
-				if(e.target.classList.contains("botonActivo"))
-				{
-					e.target.querySelector("p").textContent="📄+📄";
+					if (e.target.classList.contains("botonActivo")) {
+						e.target.querySelector("p").textContent = "📄+📄";
+					}
+
+					else {
+						e.target.querySelector("p").textContent = "❌+📄";
+					}
 				}
-				else
-				{
-					e.target.querySelector("p").textContent="❌+📄";
-				}
-			}
-			break;
+				break;
 			case "botonBarraConfigPDF1ActivarDesactivarModoNoche":
-			{
-				if(FASE2TEST.getElementsByClassName("paginaContenedorPDF1EnImagenes").length>0)
 				{
-					OBJ_CONTROLADOR_CSS.toggleRegla("contenedor1F2InvertirColores",".contenidoPaginasContenedorPDF1EnImagenes {filter: invert(1);}");
-					anadirQuitarClass(document.getElementById("botonBarraConfigPDF1ActivarDesactivarModoNoche"), "botonActivo");
+					if (FASE2TEST.getElementsByClassName("paginaContenedorPDF1EnImagenes").length > 0) {
+						OBJ_CONTROLADOR_CSS.toggleRegla("contenedor1F2InvertirColores", ".contenidoPaginasContenedorPDF1EnImagenes {filter: invert(1);}");
+						anadirQuitarClass(document.getElementById("botonBarraConfigPDF1ActivarDesactivarModoNoche"), "botonActivo");
+					}
 				}
-			}
-			break;
+				break;
 			case "botonBarraConfigPDF1Borrar":
-			{
-				if(e.target.dataset.disabled=="false")
 				{
-					OBJ_TOOL_ALERT.mostrarConfirm("<div data-langlocation='miAlert,tituloTextoPaginasAEliminar' data-langmod='html' data-langactual='es'>Borrar páginas</div>", 
-					`
-						<label for="textoPaginasAEliminar">
-							<div data-langlocation='miAlert,preeliminar' data-langmod='html' data-langactual='es'>Introduzca páginas a eliminar: </div>
-						</label><br>
-						<input class="focusContenido" value="1" id="textoPaginasAEliminar" name="textoPaginasAEliminar" type='text' placeholder='Introduzca páginas a eliminar' data-langlocation='miAlert,textoPaginasAEliminar' data-langmod='placeholder' data-langactual='es'>
-						<p id="textoPaginasAEliminarMensajeCorreccion" data-langlocation='miAlert,formatoIncorrecto' data-langmod='html' data-langactual='es' style="display:none;">El formato del texto es incorrecto.</p>
-						<p data-langlocation='miAlert,pExplicaciontextoPaginasAEliminar' data-langmod='html' data-langactual='es'>Separe por comas ',' las páginas y los rangos de página que desee eliminar. Los rangos se escriben separados por guion '-'. Ejemplo: '1,3-5,8' En este ejemplo se eliminarán las páginas 1,3,4,5 y 8</p>
-					`
-					,""
-					,"ventanaMiConfirm",
-					()=>{   
-						if(OBJ_CONTROL_PAGINAS_F2_1.comprobarStringConPaginas(document.getElementById("textoPaginasAEliminar").value))
-						{
-							OBJ_CONTROL_PAGINAS_F2_1.eliminarVariasPaginasYReordenarPaginas(document.getElementById("textoPaginasAEliminar").value);
-							OBJ_PIZARRA1.borrarPizarraYLineasGuardadas();
-							document.getElementById("modalMiAlert").remove();
-							actualizarHabilitacionBotonesMenusRapidos();
-						}
-						else
-						{
-							document.getElementById("textoPaginasAEliminarMensajeCorreccion").style.display="block";
-						}
+					if (e.target.dataset.disabled == "false") {
+						OBJ_TOOL_ALERT.mostrarConfirm("<div data-langlocation='miAlert,tituloTextoPaginasAEliminar' data-langmod='html' data-langactual='es'>Borrar páginas</div>",
+							`
+					<label for="textoPaginasAEliminar">
+						<div data-langlocation='miAlert,preeliminar' data-langmod='html' data-langactual='es'>Introduzca páginas a eliminar: </div>
+					</label><br>
+					<input class="focusContenido" value="1" id="textoPaginasAEliminar" name="textoPaginasAEliminar" type='text' placeholder='Introduzca páginas a eliminar' data-langlocation='miAlert,textoPaginasAEliminar' data-langmod='placeholder' data-langactual='es'>
+					<p id="textoPaginasAEliminarMensajeCorreccion" data-langlocation='miAlert,formatoIncorrecto' data-langmod='html' data-langactual='es' style="display:none;">El formato del texto es incorrecto.</p>
+					<p data-langlocation='miAlert,pExplicaciontextoPaginasAEliminar' data-langmod='html' data-langactual='es'>Separe por comas ',' las páginas y los rangos de página que desee eliminar. Los rangos se escriben separados por guion '-'. Ejemplo: '1,3-5,8' En este ejemplo se eliminarán las páginas 1,3,4,5 y 8</p>
+				`,
+							"",
+							"ventanaMiConfirm",
+							() => {
+								if (OBJ_CONTROL_PAGINAS_F2_1.comprobarStringConPaginas(document.getElementById("textoPaginasAEliminar").value)) {
+									OBJ_CONTROL_PAGINAS_F2_1.eliminarVariasPaginasYReordenarPaginas(document.getElementById("textoPaginasAEliminar").value);
+									OBJ_PIZARRA1.borrarPizarraYLineasGuardadas();
+									document.getElementById("modalMiAlert").remove();
+									actualizarHabilitacionBotonesMenusRapidos();
+								}
+
+								else {
+									document.getElementById("textoPaginasAEliminarMensajeCorreccion").style.display = "block";
+								}
+							},
+							() => { },
+							false,
+							() => { cambiarIdioma(langActual); });
+
+						document.getElementById("textoPaginasAEliminar").removeEventListener("input", (event) => OBJ_CONTROL_PAGINAS_F2_1.validarCaracterPaginasAEliminar(event));
+						document.getElementById("textoPaginasAEliminar").addEventListener("input", (event) => OBJ_CONTROL_PAGINAS_F2_1.validarCaracterPaginasAEliminar(event));
 					}
-					,()=>{}
-					, false,
-					()=>{cambiarIdioma(langActual)});
-			
-					document.getElementById("textoPaginasAEliminar").removeEventListener("input", function(event){OBJ_CONTROL_PAGINAS_F2_1.validarCaracterPaginasAEliminar(event)});
-					document.getElementById("textoPaginasAEliminar").addEventListener("input", function(event){OBJ_CONTROL_PAGINAS_F2_1.validarCaracterPaginasAEliminar(event)});
 				}
-			}
-			break;
+				break;
 			case "botonBarraConfigPDF1MostrarOcultarPizarra":
-			{
-				setToggleValoresCSS(PIZARRA1_CANVAS, "display", ["block", "none"]);
-				OBJ_PIZARRA1.redimensionarPizarra();
-				if(getValorCSS2(PIZARRA1_CANVAS, "display") != "none")
 				{
-					anadirQuitarClass(document.getElementById('botonBarraConfigPDF1MostrarOcultarPizarra'), "botonActivo",0);
-					if (FASE2TEST.querySelectorAll(".paginaContenedorPDF1EnImagenes .botonCerrarPagina").length > 0)
-					{
-						OBJ_CONTROLADOR_CSS.eliminarRegla("botonCerrarPaginaC1F2");
+					setToggleValoresCSS(PIZARRA1_CANVAS, "display", ["block", "none"]);
+					OBJ_PIZARRA1.redimensionarPizarra();
+					if (getValorCSS2(PIZARRA1_CANVAS, "display") != "none") {
+						anadirQuitarClass(document.getElementById('botonBarraConfigPDF1MostrarOcultarPizarra'), "botonActivo", 0);
+						if (FASE2TEST.querySelectorAll(".paginaContenedorPDF1EnImagenes .botonCerrarPagina").length > 0) {
+							OBJ_CONTROLADOR_CSS.eliminarRegla("botonCerrarPaginaC1F2");
+						}
+						if (modoTouch) {
+							setToggleValoresCSS(FASE2TEST.querySelectorAll("#ContenedorPDF1 .divScrollingPDF"), "display", "block");
+						}
 					}
-					if(modoTouch)
-					{
-						setToggleValoresCSS(FASE2TEST.querySelectorAll("#ContenedorPDF1 .divScrollingPDF"),"display","block");
+
+					else {
+						if (FASE2TEST.querySelectorAll(".paginaContenedorPDF1EnImagenes .botonCerrarPagina").length > 0) {
+							OBJ_CONTROLADOR_CSS.crearSustituirRegla("botonCerrarPaginaC1F2", `#ContenedorPDF1EnImagenes .botonCerrarPagina{display:block;}`);
+						}
+						anadirQuitarClass(document.getElementById('botonBarraConfigPDF1MostrarOcultarPizarra'), "botonActivo", 1);
+						setToggleValoresCSS(FASE2TEST.querySelectorAll("#ContenedorPDF1 .divScrollingPDF"), "display", "none");
 					}
+					OBJ_PIZARRA1.repintarLineas();
 				}
-				else
-				{
-					if (FASE2TEST.querySelectorAll(".paginaContenedorPDF1EnImagenes .botonCerrarPagina").length > 0)
-					{
-						OBJ_CONTROLADOR_CSS.crearSustituirRegla("botonCerrarPaginaC1F2",`#ContenedorPDF1EnImagenes .botonCerrarPagina{display:block;}`);
-					}
-					anadirQuitarClass(document.getElementById('botonBarraConfigPDF1MostrarOcultarPizarra'), "botonActivo",1);
-					setToggleValoresCSS(FASE2TEST.querySelectorAll("#ContenedorPDF1 .divScrollingPDF"),"display","none"); 
-				}
-				OBJ_PIZARRA1.repintarLineas();
-			}
-			break;
+				break;
 			case "botonBarraConfigPDF1BorrarPizarra":
-			{
-				OBJ_PIZARRA1.borrarPizarraYLineasGuardadas();
-			}
-			break;
+				{
+					OBJ_PIZARRA1.borrarPizarraYLineasGuardadas();
+				}
+				break;
 			case "botonBarraConfigPDF1ColorPincel":
-			{
-				document.getElementById('colorPincel1').click();
-			}
-			break;
+				{
+					document.getElementById('colorPincel1').click();
+				}
+				break;
 			case "botonBarraConfigPDF1Borrador":
-			{
-				document.getElementById('borradorPincel1').click();
-			}
-			break;
+				{
+					document.getElementById('borradorPincel1').click();
+				}
+				break;
 			case "borradorPincel1":
-			{
-				OBJ_PIZARRA1.modoBorrador();
-				anadirQuitarClass(document.getElementById("botonBarraConfigPDF1Borrador"),"botonActivo");
-			}
-			break;
+				{
+					OBJ_PIZARRA1.modoBorrador();
+					anadirQuitarClass(document.getElementById("botonBarraConfigPDF1Borrador"), "botonActivo");
+				}
+				break;
 			default:
-			break;
+				break;
 		}
 	});
 
-    document.getElementById('colorPincel1').addEventListener('input', function (e)
-    {
-        OBJ_PIZARRA1.setColorTrazo(this.value);
-    });
+	document.getElementById('colorPincel1').addEventListener('input', (e) => OBJ_PIZARRA1.setColorTrazo(e.target.value));
 
-    document.getElementById("file-open4").addEventListener("input", function(e)
-    {
-        if(this.files[0]!=null)
-        {
-            cargandoPDFDesdeElInput="file-open4";
-            OBJ_CONTROL_INPUT_ARCHIVOS.onInputFiles(this.files, ["ContenedorPDF1EnImagenes"],FASE2TEST.querySelector('#file-open4AdicionCheckbox').checked);
-            OBJ_PIZARRA1.borrarPizarraYLineasGuardadas();
-            document.getElementById("inputTextPaginaSeleccionadaPDF1").value=1;
-            this.value="";
-        }
-    });
+	document.getElementById("file-open4").addEventListener("input", (e) => {
+		if (e.target.files[0] != null) {
+			cargandoPDFDesdeElInput = "file-open4";
+			OBJ_CONTROL_INPUT_ARCHIVOS.onInputFiles(e.target.files, ["ContenedorPDF1EnImagenes"], FASE2TEST.querySelector('#file-open4AdicionCheckbox').checked);
+			OBJ_PIZARRA1.borrarPizarraYLineasGuardadas();
+			document.getElementById("inputTextPaginaSeleccionadaPDF1").value = 1;
+			e.target.value = "";
+		}
+	});
 
-	DIV_MENU_RAPIDO2.addEventListener("click", function(e)
-	{
-		switch (e.target.id)
-		{
+	DIV_MENU_RAPIDO2.addEventListener("click", (e) => {
+		switch (e.target.id) {
 			case "divBotonConfigPDF2":
-			{
-				setToggleValoresCSS(FASE2TEST.getElementsByClassName("barraConfigPDF2"), "display", ["none", "flex"]);
+				{
+					setToggleValoresCSS(FASE2TEST.getElementsByClassName("barraConfigPDF2"), "display", ["none", "flex"]);
 
-				if(getValorCSS("class","barraConfigPDF2", "display")=="flex")
-				{
-					anadirQuitarClass(document.getElementById('divBotonConfigPDF2'), "botonActivo",1);
+					if (getValorCSS("class", "barraConfigPDF2", "display") == "flex") {
+						anadirQuitarClass(document.getElementById('divBotonConfigPDF2'), "botonActivo", 1);
+					}
+					else {
+						anadirQuitarClass(document.getElementById('divBotonConfigPDF2'), "botonActivo", 0);
+					}
 				}
-				else
-				{
-					anadirQuitarClass(document.getElementById('divBotonConfigPDF2'), "botonActivo",0);
-				}
-			}
-			break;
+				break;
 			case "botonBarraConfigPDF2InputFile":
-			{
-				document.getElementById("file-open5").click();
-			}
-			break;
+				{
+					document.getElementById("file-open5").click();
+				}
+				break;
 			case "botonBarraConfigPDF2InputFileAdicion":
-			{
-				anadirQuitarClass(e.target, "botonActivo", 2);
-				FASE2TEST.querySelector('#file-open5AdicionCheckbox').checked = !FASE2TEST.querySelector('#file-open5AdicionCheckbox').checked;
+				{
+					anadirQuitarClass(e.target, "botonActivo", 2);
+					FASE2TEST.querySelector('#file-open5AdicionCheckbox').checked = !FASE2TEST.querySelector('#file-open5AdicionCheckbox').checked;
 
-				if(e.target.classList.contains("botonActivo"))
-				{
-					e.target.querySelector("p").textContent="📄+📄";
+					if (e.target.classList.contains("botonActivo")) {
+						e.target.querySelector("p").textContent = "📄+📄";
+					}
+
+					else {
+						e.target.querySelector("p").textContent = "❌+📄";
+					}
 				}
-				else
-				{
-					e.target.querySelector("p").textContent="❌+📄";
-				}
-			}
-			break;
+				break;
 			case "botonBarraConfigPDF2ActivarDesactivarModoNoche":
-			{
-				if(FASE2TEST.getElementsByClassName("paginaContenedorPDF2EnImagenes").length>0)
 				{
-					OBJ_CONTROLADOR_CSS.toggleRegla("contenedor2F2InvertirColores",".contenidoPaginasContenedorPDF2EnImagenes {filter: invert(1);}");
-					anadirQuitarClass(document.getElementById("botonBarraConfigPDF2ActivarDesactivarModoNoche"), "botonActivo");
+					if (FASE2TEST.getElementsByClassName("paginaContenedorPDF2EnImagenes").length > 0) {
+						OBJ_CONTROLADOR_CSS.toggleRegla("contenedor2F2InvertirColores", ".contenidoPaginasContenedorPDF2EnImagenes {filter: invert(1);}");
+						anadirQuitarClass(document.getElementById("botonBarraConfigPDF2ActivarDesactivarModoNoche"), "botonActivo");
+					}
 				}
-			}
-			break;
+				break;
 			case "botonBarraConfigPDF2Borrar":
-			{
-				if(e.target.dataset.disabled=="false")
 				{
-					OBJ_TOOL_ALERT.mostrarConfirm("<div data-langlocation='miAlert,tituloTextoPaginasAEliminar' data-langmod='html' data-langactual='es'>Borrar páginas</div>", 
-					`
-						<label for="textoPaginasAEliminar">
-							<div data-langlocation='miAlert,preeliminar' data-langmod='html' data-langactual='es'>Introduzca páginas a eliminar: </div>
-						</label><br>
-						<input class="focusContenido" value="1" id="textoPaginasAEliminar" name="textoPaginasAEliminar" type='text' placeholder='Introduzca páginas a eliminar' data-langlocation='miAlert,textoPaginasAEliminar' data-langmod='placeholder' data-langactual='es'>
-						<p id="textoPaginasAEliminarMensajeCorreccion" data-langlocation='miAlert,formatoIncorrecto' data-langmod='html' data-langactual='es' style="display:none;">El formato del texto es incorrecto.</p>
-						<p data-langlocation='miAlert,pExplicaciontextoPaginasAEliminar' data-langmod='html' data-langactual='es'>Separe por comas ',' las páginas y los rangos de página que desee eliminar. Los rangos se escriben separados por guion '-'. Ejemplo: '1,3-5,8' En este ejemplo se eliminarán las páginas 1,3,4,5 y 8</p>
-					`
-					,""
-					,"ventanaMiConfirm",
-					()=>{   
-						if(OBJ_CONTROL_PAGINAS_F2_2.comprobarStringConPaginas(document.getElementById("textoPaginasAEliminar").value))
-						{
-							OBJ_CONTROL_PAGINAS_F2_2.eliminarVariasPaginasYReordenarPaginas(document.getElementById("textoPaginasAEliminar").value);
-							OBJ_PIZARRA2.borrarPizarraYLineasGuardadas();
-							document.getElementById("modalMiAlert").remove();
-							actualizarHabilitacionBotonesMenusRapidos();
-						}
-						else
-						{
-							document.getElementById("textoPaginasAEliminarMensajeCorreccion").style.display="block";
-						}
+					if (e.target.dataset.disabled == "false") {
+						OBJ_TOOL_ALERT.mostrarConfirm("<div data-langlocation='miAlert,tituloTextoPaginasAEliminar' data-langmod='html' data-langactual='es'>Borrar páginas</div>",
+							`
+					<label for="textoPaginasAEliminar">
+						<div data-langlocation='miAlert,preeliminar' data-langmod='html' data-langactual='es'>Introduzca páginas a eliminar: </div>
+					</label><br>
+					<input class="focusContenido" value="1" id="textoPaginasAEliminar" name="textoPaginasAEliminar" type='text' placeholder='Introduzca páginas a eliminar' data-langlocation='miAlert,textoPaginasAEliminar' data-langmod='placeholder' data-langactual='es'>
+					<p id="textoPaginasAEliminarMensajeCorreccion" data-langlocation='miAlert,formatoIncorrecto' data-langmod='html' data-langactual='es' style="display:none;">El formato del texto es incorrecto.</p>
+					<p data-langlocation='miAlert,pExplicaciontextoPaginasAEliminar' data-langmod='html' data-langactual='es'>Separe por comas ',' las páginas y los rangos de página que desee eliminar. Los rangos se escriben separados por guion '-'. Ejemplo: '1,3-5,8' En este ejemplo se eliminarán las páginas 1,3,4,5 y 8</p>
+				`,
+							"",
+							"ventanaMiConfirm",
+							() => {
+								if (OBJ_CONTROL_PAGINAS_F2_2.comprobarStringConPaginas(document.getElementById("textoPaginasAEliminar").value)) {
+									OBJ_CONTROL_PAGINAS_F2_2.eliminarVariasPaginasYReordenarPaginas(document.getElementById("textoPaginasAEliminar").value);
+									OBJ_PIZARRA2.borrarPizarraYLineasGuardadas();
+									document.getElementById("modalMiAlert").remove();
+									actualizarHabilitacionBotonesMenusRapidos();
+								}
+
+								else {
+									document.getElementById("textoPaginasAEliminarMensajeCorreccion").style.display = "block";
+								}
+							},
+							() => { },
+							false,
+							() => { cambiarIdioma(langActual); });
+
+						document.getElementById("textoPaginasAEliminar").removeEventListener("input", (event) => OBJ_CONTROL_PAGINAS_F2_2.validarCaracterPaginasAEliminar(event));
+						document.getElementById("textoPaginasAEliminar").addEventListener("input", (event) => OBJ_CONTROL_PAGINAS_F2_2.validarCaracterPaginasAEliminar(event));
 					}
-					,()=>{}
-					, false,
-					()=>{cambiarIdioma(langActual)});
-			
-					document.getElementById("textoPaginasAEliminar").removeEventListener("input", function(event){OBJ_CONTROL_PAGINAS_F2_2.validarCaracterPaginasAEliminar(event)});
-					document.getElementById("textoPaginasAEliminar").addEventListener("input", function(event){OBJ_CONTROL_PAGINAS_F2_2.validarCaracterPaginasAEliminar(event)});
 				}
-			}
-			break;
+				break;
 			case "botonBarraConfigPDF2MostrarOcultarPizarra":
-			{
-				setToggleValoresCSS(PIZARRA2_CANVAS, "display", ["block", "none"]);
-				OBJ_PIZARRA2.redimensionarPizarra();
-				if(getValorCSS2(PIZARRA2_CANVAS,"display")!="none")
 				{
-					anadirQuitarClass(document.getElementById('botonBarraConfigPDF2MostrarOcultarPizarra'), "botonActivo",0);
-					if (FASE2TEST.querySelectorAll(".paginaContenedorPDF2EnImagenes .botonCerrarPagina").length > 0)
-					{
-						OBJ_CONTROLADOR_CSS.eliminarRegla("botonCerrarPaginaC2F2");
+					setToggleValoresCSS(PIZARRA2_CANVAS, "display", ["block", "none"]);
+					OBJ_PIZARRA2.redimensionarPizarra();
+					if (getValorCSS2(PIZARRA2_CANVAS, "display") != "none") {
+						anadirQuitarClass(document.getElementById('botonBarraConfigPDF2MostrarOcultarPizarra'), "botonActivo", 0);
+						if (FASE2TEST.querySelectorAll(".paginaContenedorPDF2EnImagenes .botonCerrarPagina").length > 0) {
+							OBJ_CONTROLADOR_CSS.eliminarRegla("botonCerrarPaginaC2F2");
+						}
+						if (modoTouch) {
+							setToggleValoresCSS(FASE2TEST.querySelectorAll("#ContenedorPDF2 .divScrollingPDF"), "display", "block");
+						}
 					}
-					if(modoTouch)
-					{
-						setToggleValoresCSS(FASE2TEST.querySelectorAll("#ContenedorPDF2 .divScrollingPDF"),"display","block");
+
+					else {
+						anadirQuitarClass(document.getElementById('botonBarraConfigPDF2MostrarOcultarPizarra'), "botonActivo", 1);
+						setToggleValoresCSS(FASE2TEST.querySelectorAll("#ContenedorPDF2 .divScrollingPDF"), "display", "none");
+						if (FASE2TEST.querySelectorAll(".paginaContenedorPDF2EnImagenes .botonCerrarPagina").length > 0) {
+							OBJ_CONTROLADOR_CSS.crearSustituirRegla("botonCerrarPaginaC2F2", `#ContenedorPDF2EnImagenes .botonCerrarPagina{display:block;}`);
+						}
 					}
+					OBJ_PIZARRA2.repintarLineas();
 				}
-				else
-				{
-					anadirQuitarClass(document.getElementById('botonBarraConfigPDF2MostrarOcultarPizarra'), "botonActivo",1);
-					setToggleValoresCSS(FASE2TEST.querySelectorAll("#ContenedorPDF2 .divScrollingPDF"),"display","none");
-					if (FASE2TEST.querySelectorAll(".paginaContenedorPDF2EnImagenes .botonCerrarPagina").length > 0)
-					{
-						OBJ_CONTROLADOR_CSS.crearSustituirRegla("botonCerrarPaginaC2F2",`#ContenedorPDF2EnImagenes .botonCerrarPagina{display:block;}`);
-					}
-				}
-				OBJ_PIZARRA2.repintarLineas();
-			}
-			break;
+				break;
 			case "botonBarraConfigPDF2BorrarPizarra":
-			{
-				OBJ_PIZARRA2.borrarPizarraYLineasGuardadas();
-			}
-			break;
+				{
+					OBJ_PIZARRA2.borrarPizarraYLineasGuardadas();
+				}
+				break;
 			case "botonBarraConfigPDF2ColorPincel":
-			{
-				document.getElementById('colorPincel2').click();
-			}
-			break;
+				{
+					document.getElementById('colorPincel2').click();
+				}
+				break;
 			case "botonBarraConfigPDF2Borrador":
-			{
-				document.getElementById('borradorPincel2').click();
-			}
-			break;
+				{
+					document.getElementById('borradorPincel2').click();
+				}
+				break;
 			case "borradorPincel2":
-			{
-				OBJ_PIZARRA2.modoBorrador();
-				anadirQuitarClass(document.getElementById("botonBarraConfigPDF2Borrador"),"botonActivo");
-			}
-			break;
+				{
+					OBJ_PIZARRA2.modoBorrador();
+					anadirQuitarClass(document.getElementById("botonBarraConfigPDF2Borrador"), "botonActivo");
+				}
+				break;
 			default:
-			break;
+				break;
 		}
 	});
 
-    document.getElementById('colorPincel2').addEventListener('input', function (e)
-    {
-        OBJ_PIZARRA2.setColorTrazo(this.value);
-    });
+	document.getElementById('colorPincel2').addEventListener('input', (e) => {
+		OBJ_PIZARRA2.setColorTrazo(e.target.value);
+	});
 
-    document.getElementById("file-open5").addEventListener("input", function(e)
-    {
-        if(this.files[0]!=null)
-        {
-            cargandoPDFDesdeElInput="file-open5";
-            OBJ_CONTROL_INPUT_ARCHIVOS.onInputFiles(this.files, ["ContenedorPDF2EnImagenes"],FASE2TEST.querySelector('#file-open5AdicionCheckbox').checked);
-            OBJ_PIZARRA2.borrarPizarraYLineasGuardadas();
-            document.getElementById("inputTextPaginaSeleccionadaPDF2").value=1;
-            this.value="";
-        }
-    });
+	document.getElementById("file-open5").addEventListener("input", (e) => {
+		if (e.target.files[0] != null) {
+			cargandoPDFDesdeElInput = "file-open5";
+			OBJ_CONTROL_INPUT_ARCHIVOS.onInputFiles(e.target.files, ["ContenedorPDF2EnImagenes"], FASE2TEST.querySelector('#file-open5AdicionCheckbox').checked);
+			OBJ_PIZARRA2.borrarPizarraYLineasGuardadas();
+			document.getElementById("inputTextPaginaSeleccionadaPDF2").value = 1;
+			e.target.value = "";
+		}
+	});
 }
 
 function crearEventListenerBotonesBarraConfig()
 {
-	document.getElementById("barraConfigContenedorPDFs").addEventListener('click', function(e)
+	document.getElementById("barraConfigContenedorPDFs").addEventListener('click', (e) =>
 	{
 		switch (e.target.id)
 		{
@@ -4058,7 +3980,7 @@ function crearEventListenerBotonesBarraConfig()
 
 function crearListenerPrecerrado()
 {
-	window.addEventListener('beforeunload', function(e)
+	window.addEventListener('beforeunload', (e) =>
 	{
 		if(!testGuardado && !preguntadoSiSalir)
 		{
@@ -4089,7 +4011,7 @@ function crearEventListenerContenidoContenedorTest()
 		});
 	}
 
-	document.getElementById('contenedorTest-preguntasSinTextArea').addEventListener('click', function(e)
+	document.getElementById('contenedorTest-preguntasSinTextArea').addEventListener('click', (e) =>
 	{
 		switch (true)
 		{
@@ -4226,7 +4148,8 @@ function crearEventListenerContenidoContenedorTest()
 
 function crearEventListenerPestanaContenedor()
 {
-	PDF_TOOLS_TAB_PANEL.addEventListener("click",function(e)
+	PDF_TOOLS_TAB_PANEL.addEventListener("click",
+	(e) =>
 	{
 		switch(e.target.id)
 		{
@@ -4391,42 +4314,43 @@ function crearEventListenerPestanaContenedor()
 		}
 	});
 
-	document.getElementById("colorPincel").addEventListener("input", function(e)
+	document.getElementById("colorPincel").addEventListener("input", (e) =>
 	{
 		const SELECCIONADO_TEMP=PDF_SELECT.value;
 		if(SELECCIONADO_TEMP=='ContenedorPDF1')
 		{
-			OBJ_PIZARRA1.setColorTrazo(this.value);
+			OBJ_PIZARRA1.setColorTrazo(e.target.value);
 		}
 		else if(SELECCIONADO_TEMP=='ContenedorPDF2')
 		{
-			OBJ_PIZARRA2.setColorTrazo(this.value);
+			OBJ_PIZARRA2.setColorTrazo(e.target.value);
 		}
 		else
 		{
-			OBJ_PIZARRA1.setColorTrazo(this.value);
-			OBJ_PIZARRA2.setColorTrazo(this.value);
+			OBJ_PIZARRA1.setColorTrazo(e.target.value);
+			OBJ_PIZARRA2.setColorTrazo(e.target.value);
 		}
 	});
 
-	document.getElementById("file-open3").addEventListener("input", function(e)
+	document.getElementById("file-open3").addEventListener("input",
+	(e) =>
 	{
-		if(this.files[0]!=null)
+		if(e.target.files[0]!=null)
 		{
 			cargandoPDFDesdeElInput="file-open3";
 			cargandoPDFPara=PDF_SELECT.value;
 			if(PDF_SELECT.value=="contenedorPDFs")
 			{
-				OBJ_CONTROL_INPUT_ARCHIVOS.onInputFiles(this.files, ['ContenedorPDF1EnImagenes','ContenedorPDF2EnImagenes'], FASE2TEST.querySelector('#file-open3AdicionCheckbox').checked);
+				OBJ_CONTROL_INPUT_ARCHIVOS.onInputFiles(e.target.files, ['ContenedorPDF1EnImagenes','ContenedorPDF2EnImagenes'], FASE2TEST.querySelector('#file-open3AdicionCheckbox').checked);
 			}
 			else
 			{
-				OBJ_CONTROL_INPUT_ARCHIVOS.onInputFiles(this.files, [cargandoPDFPara+'EnImagenes'], FASE2TEST.querySelector('#file-open3AdicionCheckbox').checked);
+				OBJ_CONTROL_INPUT_ARCHIVOS.onInputFiles(e.target.files, [cargandoPDFPara+'EnImagenes'], FASE2TEST.querySelector('#file-open3AdicionCheckbox').checked);
 			}
-			this.value="";
+			e.target.value="";
 
 			setTimeout(
-				function(e)
+				() =>
 				{
 					if(cargandoPDFPara=="ContenedorPDF1")
 					{
@@ -4451,20 +4375,18 @@ function crearEventListenerPestanaContenedor()
 		}
 	});
 
-	PDF_SELECT.addEventListener("change", function(e)
-	{
-		actualizarHabilitacionBotonesPDF();
-	});
+	PDF_SELECT.addEventListener("change", () =>
+		actualizarHabilitacionBotonesPDF()
+	);
 
-	SELECT_DEFORMAR_PDF.addEventListener("change", function(e)
-	{
-		actualizarHabilitacionBotonesPDF();
-	});
+	SELECT_DEFORMAR_PDF.addEventListener("change", () =>
+		actualizarHabilitacionBotonesPDF()
+	);
 }
 
 function crearEventListenerPestanaOpciones()
 {
-	MAS_ACCIONES_TAB_PANEL.addEventListener("click",function(e)
+	MAS_ACCIONES_TAB_PANEL.addEventListener("click", (e) =>
 	{
 		switch(e.target.id)
 		{
@@ -4530,7 +4452,7 @@ function crearEventListenerPestanaOpciones()
 
 function crearEventListenerOpcionesBasicas()
 {
-	document.getElementById("datos").addEventListener("click",function(e)
+	document.getElementById("datos").addEventListener("click", (e) =>
 	{
 		switch(e.target.id)
 		{
@@ -4603,9 +4525,9 @@ function crearEventListenerOpcionesBasicas()
 	});
 }
 
-document.getElementById("apunteGeneralTextarea").addEventListener("blur", function(e)
+document.getElementById("apunteGeneralTextarea").addEventListener("blur", (e) =>
 {
-    document.getElementById(`apunteGeneralP`).innerHTML=this.value;
+    document.getElementById(`apunteGeneralP`).innerHTML = e.target.value;
 });
 
 Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemento) =>
@@ -4630,22 +4552,22 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 			crearDobleTouchListenerParaScroll("divScrollingPDF1H", "ContenedorPDF1yPizarra", "horizontal");
 			crearDobleTouchListenerParaScroll("divScrollingPDF2H", "ContenedorPDF2yPizarra", "horizontal");
 
-			document.getElementById("divScrollingPDF1V").addEventListener('touchstart', function(e)
+			document.getElementById("divScrollingPDF1V").addEventListener('touchstart', (e) =>
 			{
 				lastY = e.touches[0].clientY;
 				e.preventDefault();
 			});
-			document.getElementById("divScrollingPDF1V").addEventListener('touchmove', function(e)
+			document.getElementById("divScrollingPDF1V").addEventListener('touchmove', (e) =>
 			{
 				moverDivScrollingV(e, 'ContenedorPDF1yPizarra');
 				OBJ_TOOL_BOTONES_PAGINACION.actualizarNumeroDelPaginador("ContenedorPDF1yPizarra", "inputTextPaginaSeleccionadaPDF1", "ContenedorPDF1EnImagenes", "paginaContenedorPDF1EnImagenes");
 			});
-			document.getElementById("divScrollingPDF2V").addEventListener('touchstart', function(e)
+			document.getElementById("divScrollingPDF2V").addEventListener('touchstart', (e) =>
 			{
 				lastY = e.touches[0].clientY;
 				e.preventDefault();
 			});
-			document.getElementById("divScrollingPDF2V").addEventListener('touchmove', function(e)
+			document.getElementById("divScrollingPDF2V").addEventListener('touchmove', (e) =>
 			{
 				moverDivScrollingV(e, 'ContenedorPDF2yPizarra');
 				OBJ_TOOL_BOTONES_PAGINACION.actualizarNumeroDelPaginador("ContenedorPDF2yPizarra", "inputTextPaginaSeleccionadaPDF2", "ContenedorPDF2EnImagenes", "paginaContenedorPDF2EnImagenes");
@@ -4654,16 +4576,15 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 
 		function iniciarEventListenersDivScrollingPDFHTouch()
 		{
-			document.getElementById("divScrollingPDF1H").addEventListener('touchstart', function(e)
+			document.getElementById("divScrollingPDF1H").addEventListener('touchstart', (e) =>
 			{
 				if (e.touches.length === 1)
 				{
 					lastX = e.touches[0].clientX;
 					e.preventDefault();
-					temporizadorActualizarLastX = setTimeout(function()
-					{
-						moverDivScrollingH(e, 'ContenedorPDF1yPizarra');
-					}, 200); // Espera 300 milisegundos antes de activar el movimiento
+					temporizadorActualizarLastX = setTimeout(()=>
+						moverDivScrollingH(e, 'ContenedorPDF1yPizarra')
+					, 200); // Espera 200 milisegundos antes de activar el movimiento
 				}
 				else
 				{
@@ -4672,7 +4593,7 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 				}
 			});
 			
-			document.getElementById("divScrollingPDF1H").addEventListener('touchmove', function(e) {
+			document.getElementById("divScrollingPDF1H").addEventListener('touchmove', (e) => {
 				if (e.touches.length === 1 && temporizadorActualizarLastX)
 				{
 					clearTimeout(temporizadorActualizarLastX);
@@ -4681,21 +4602,20 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 				}
 			});
 			
-			document.getElementById("divScrollingPDF1H").addEventListener('touchend', function() {
+			document.getElementById("divScrollingPDF1H").addEventListener('touchend', () => {
 				clearTimeout(temporizadorActualizarLastX);
 				temporizadorActualizarLastX=null;
 			});
 
 			// Repite el mismo patrón para el otro div
-			document.getElementById("divScrollingPDF2H").addEventListener('touchstart', function(e) {
+			document.getElementById("divScrollingPDF2H").addEventListener('touchstart', (e) => {
 				if (e.touches.length === 1)
 				{
 					lastX = e.touches[0].clientX;
 					e.preventDefault();
-					temporizadorActualizarLastX = setTimeout(function()
-					{
-						moverDivScrollingH(e, 'ContenedorPDF2yPizarra');
-					}, 200); // Espera 300 milisegundos antes de activar el movimiento
+					temporizadorActualizarLastX = setTimeout(() =>
+						moverDivScrollingH(e, 'ContenedorPDF2yPizarra')
+					, 200); // Espera 300 milisegundos antes de activar el movimiento
 				}
 				else
 				{
@@ -4704,7 +4624,7 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 				}
 			});
 			
-			document.getElementById("divScrollingPDF2H").addEventListener('touchmove', function(e) {
+			document.getElementById("divScrollingPDF2H").addEventListener('touchmove', (e) => {
 				if (e.touches.length === 1 && temporizadorActualizarLastX)
 				{
 					clearTimeout(temporizadorActualizarLastX);
@@ -4713,7 +4633,7 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 				}
 			});
 			
-			document.getElementById("divScrollingPDF2H").addEventListener('touchend', function() {
+			document.getElementById("divScrollingPDF2H").addEventListener('touchend', () => {
 				clearTimeout(temporizadorActualizarLastX);
 				temporizadorActualizarLastX=null;
 			});
@@ -4772,7 +4692,7 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 		{
 			//Centra hacia el principio de la barra móvil de scroll
 			let touchtime = 0;
-			document.getElementById(touchElementId).addEventListener("touchstart", function(e)
+			document.getElementById(touchElementId).addEventListener("touchstart", (e) =>
 			{
 				if(e.touches.length===1)
 				{
@@ -4791,17 +4711,17 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 							if (scrollType === 'vertical')
 							{
 								const TOUCH_POSITION = e.touches[0].clientY;
-								const ELEMENT_POSITION = this.getBoundingClientRect().top;
+								const ELEMENT_POSITION = e.target.getBoundingClientRect().top;
 								const RELATIVE_POSITION = TOUCH_POSITION - ELEMENT_POSITION;
-								const SCROLL_POSITION = (RELATIVE_POSITION / this.clientHeight) * SCROLL_ELEMENT.scrollHeight;
+								const SCROLL_POSITION = (RELATIVE_POSITION / e.target.clientHeight) * SCROLL_ELEMENT.scrollHeight;
 								SCROLL_ELEMENT.scrollTop = SCROLL_POSITION;
 							}
 							else if(scrollType === 'horizontal')
 							{
 								const TOUCH_POSITION = e.touches[0].clientX;
-								const ELEMENT_POSITION = this.getBoundingClientRect().left;
+								const ELEMENT_POSITION = e.target.getBoundingClientRect().left;
 								const RELATIVE_POSITION = TOUCH_POSITION - ELEMENT_POSITION;
-								const SCROLL_POSITION = (RELATIVE_POSITION / this.clientWidth) * SCROLL_ELEMENT.scrollWidth;
+								const SCROLL_POSITION = (RELATIVE_POSITION / e.target.clientWidth) * SCROLL_ELEMENT.scrollWidth;
 								SCROLL_ELEMENT.scrollLeft = SCROLL_POSITION;
 							}
 							touchtime = 0;
@@ -4817,11 +4737,11 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 		}
 //	/divScrollingPDF
 //	Ventana evaluación
-		document.getElementById("rangoPregAEvaluar").addEventListener("input", function(event){validarCaracterRangoPreguntas(event)});
+		document.getElementById("rangoPregAEvaluar").addEventListener("input", (event) => validarCaracterRangoPreguntas(event));
 
-		FASE2TEST.querySelector(".modoIncorrectasEvaluacion").addEventListener("change",function(e)
+		FASE2TEST.querySelector(".modoIncorrectasEvaluacion").addEventListener("change", (e) =>
 		{
-			const SELECTED_OPTION_MODO_INCORRECTAS_EVALUACION = this.options[this.selectedIndex];
+			const SELECTED_OPTION_MODO_INCORRECTAS_EVALUACION = e.target.options[e.target.selectedIndex];
 			const NAME_OPTION_MODO_INCORRECTAS_EVALUACION = SELECTED_OPTION_MODO_INCORRECTAS_EVALUACION.getAttribute('name');
 			switch (NAME_OPTION_MODO_INCORRECTAS_EVALUACION)
 			{
@@ -4835,9 +4755,10 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 				break;
 			}
 		});
-		document.getElementById("restanLasIncorrectas").addEventListener("input", function(event){validarCaracterRestanIncorrectas(event)});
 
-		document.getElementById("continuarEvaluacion").addEventListener("click", function(e)
+		document.getElementById("restanLasIncorrectas").addEventListener("input", (event) => validarCaracterRestanIncorrectas(event));
+
+		document.getElementById("continuarEvaluacion").addEventListener("click", () =>
 		{
 			const RANGO_PREG_A_EVALUAR=document.getElementById("rangoPregAEvaluar");
 
@@ -4876,13 +4797,14 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 			}
 		});
 
-		document.getElementById("cancelarEvaluacion").addEventListener("click", function(e)
-		{
-			document.getElementById(`modalOpcionesDeEvaluacion`).style.display="none";
-		});
+		document.getElementById("cancelarEvaluacion").addEventListener("click", 
+		() =>
+			document.getElementById(`modalOpcionesDeEvaluacion`).style.display="none"
+		);
 //	/Ventana evaluación
 //	Botonera Fase1
-		document.getElementById("botoneraPDFFase1").addEventListener("click",function(e)
+		document.getElementById("botoneraPDFFase1").addEventListener("click",
+		(e) =>
 		{
 			switch(e.target.id)
 			{
@@ -4912,7 +4834,8 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 //	Generales
 		function addBackButtonListener()
 		{
-			document.addEventListener("backbutton", function(e)
+			document.addEventListener("backbutton",
+			(e) =>
 			{
 				e.preventDefault();
 				let elements = getVisibleElements(document.querySelectorAll("#modalInstrucciones, #visorImagenes, #modalOpcionesDeEvaluacion, #modalConfigColores, #modalMiAlert, #masAccionesTabPanel, #PDFToolsTabPanel"));
@@ -4922,10 +4845,9 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 					{
 						pestana.dataset.abierto="false";
 					}
-					elements.forEach(function(element)
-					{
-						element.style.display = "none";
-					});
+					elements.forEach((element) =>
+						element.style.display = "none"
+					);
 				}
 				else
 				{
@@ -4936,34 +4858,32 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 					else
 					{
 						primerExitBackButton=true;
-						setTimeout(function(){primerExitBackButton=false;},1000);
+						setTimeout(() => primerExitBackButton=false, 1000);
 					}
 				}
 			});
 		}
 
-		if (typeof cordova !== "undefined")
-		{
-			addBackButtonListener();
-		}
-		else
-		{
-			document.addEventListener("deviceready", addBackButtonListener);
-		}
+		typeof cordova !== "undefined"
+		? addBackButtonListener()
+		: document.addEventListener("deviceready", addBackButtonListener);
 
-		document.addEventListener("keydown", function(event)
+		document.addEventListener("keydown",
+		(e) =>
 		{
-			if (event.key === "Escape")
+			if (e.key === "Escape")
 			{
 				setToggleValoresCSS(document.querySelectorAll("#modalInstrucciones, #modalOpcionesDeEvaluacion, #modalConfigColores, #visorImagenes"),"display","none");
 			}
 		});
 
 		let onresize;
-		window.addEventListener("resize", function(e)
+		window.addEventListener("resize",
+		() =>
 		{
 			clearTimeout(onresize);
-			onresize=setTimeout(function()
+			onresize=setTimeout(
+			() =>
 			{
 				actualizarHabilitacionBotonesPDF();
 				redimensionarSegunOrientacionVertical();

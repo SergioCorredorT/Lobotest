@@ -1372,12 +1372,13 @@ class Temporizador
 
 		anadir0(_cifra)
 		{
-			let cifraStr=String(_cifra);
-			if((cifraStr.length)==1)
+			return _cifra.toString().padStart(2 , '0')
+/* 			let cifraStr=String(_cifra);
+			if((cifraStr.length)===1)
 			{
 				cifraStr="0"+cifraStr;
 			}
-			return cifraStr;
+			return cifraStr; */
 		}
 //	/Secundarias
 //	Primarias
@@ -1398,7 +1399,7 @@ class Temporizador
 		{
 			const OBJETO=this;
 			let inputTemporizador=document.querySelector(this.querySelectorInputTemporizador);
-			inputTemporizador.addEventListener('input', function(e){OBJETO.validarTeclaPulsadaEnInputTemporizador(e)});
+			inputTemporizador.addEventListener('input', (e) => OBJETO.validarTeclaPulsadaEnInputTemporizador(e));
 		}
 
 		/**
@@ -1479,7 +1480,7 @@ class Temporizador
 			const OBJETO=this;
 			this.saberSiEstaPausadoTemporizador=false;
 			let querySelectorInputTemporizador=this.querySelectorInputTemporizador;
-			this.intervaloTemporizador=setInterval(function(e)
+			this.intervaloTemporizador=setInterval(() =>
 			{
 				OBJETO.restar1Segundo();
 				let inputTemporizador;
@@ -1613,84 +1614,55 @@ class Temporizador
 		getSegundosRestantesTemporizador(con0=false)
 		{
 			let rsp;
-			if(con0)
-			{
-				rsp=this.anadir0(this.segundosRestantesTemporizador);
-			}
-			else
-			{
-				rsp=this.segundosRestantesTemporizador;
-			}
+			con0
+			? rsp=this.anadir0(this.segundosRestantesTemporizador)
+			: rsp=this.segundosRestantesTemporizador;
 			return rsp;
 		}
 
 		getMinutosRestantesTemporizador(con0=false)
 		{
 			let rsp;
-			if(con0)
-			{
-				rsp=this.anadir0(this.minutosRestantesTemporizador);
-			}
-			else
-			{
-				rsp=this.minutosRestantesTemporizador;
-			}
+			con0
+			? rsp=this.anadir0(this.minutosRestantesTemporizador)
+			: rsp=this.minutosRestantesTemporizador;
+
 			return rsp;
 		}
 
 		getHorasRestantesTemporizador(con0=false)
 		{
 			let rsp;
-			if(con0)
-			{
-				rsp=this.anadir0(this.horasRestantesTemporizador);
-			}
-			else
-			{
-				rsp=this.horasRestantesTemporizador;
-			}
+			con0
+			? rsp=this.anadir0(this.horasRestantesTemporizador)
+			: rsp=this.horasRestantesTemporizador;
 			return rsp;
 		}
 
 		getSegundosInicialesTemporizador(con0=false)
 		{
 			let rsp;
-			if(con0)
-			{
-				rsp=this.anadir0(this.segundosInicialesTemporizador);
-			}
-			else
-			{
-				rsp=this.segundosInicialesTemporizador;
-			}
+			con0
+			? rsp=this.anadir0(this.segundosInicialesTemporizador)
+			: rsp=this.segundosInicialesTemporizador;
 			return rsp;
 		}
 
 		getMinutosInicialesTemporizador(con0=false)
 		{
 			let rsp;
-			if(con0)
-			{
-				rsp=this.anadir0(this.minutosInicialesTemporizador);
-			}
-			else
-			{
-				rsp=this.minutosInicialesTemporizador;
-			}
+			con0
+			? rsp=this.anadir0(this.minutosInicialesTemporizador)
+			: rsp=this.minutosInicialesTemporizador;
 			return rsp;
 		}
 
 		getHorasInicialesTemporizador(con0=false)
 		{
 			let rsp;
-			if(con0)
-			{
-				rsp=this.anadir0(this.horasInicialesTemporizador);
-			}
-			else
-			{
-				rsp=this.horasInicialesTemporizador;
-			}
+			con0
+			? rsp=this.anadir0(this.horasInicialesTemporizador)
+			: rsp=this.horasInicialesTemporizador;
 			return rsp;
 		}
 
@@ -1753,11 +1725,6 @@ class Cronometro
 
 	saberSiEstaPausadoCronometro=false;
 
-	constructor()
-	{
-		
-	}
-
 //	Secundarias
 		sumar1Segundo()
 		{
@@ -1779,12 +1746,13 @@ class Cronometro
 
 		anadir0(_cifra)
 		{
-			let cifraStr=String(_cifra);
+			return _cifra.toString().padStart(2 , '0')
+/* 			let cifraStr=String(_cifra);
 			if((cifraStr.length)==1)
 			{
 				cifraStr="0"+cifraStr;
 			}
-			return cifraStr;
+			return cifraStr; */
 		}
 
 		pausarCronometro()
@@ -1834,42 +1802,27 @@ class Cronometro
 		getSegundosActualesCronometro(con0=false)
 		{
 			let rsp;
-			if(con0)
-			{
-				rsp=this.anadir0(this.segundosActualesCronometro);
-			}
-			else
-			{
-				rsp=this.segundosActualesCronometro;
-			}
+			con0
+			? rsp=this.anadir0(this.segundosActualesCronometro)
+			: rsp=this.segundosActualesCronometro;
 			return rsp;
 		}
 
 		getMinutosActualesCronometro(con0=false)
 		{
 			let rsp;
-			if(con0)
-			{
-				rsp=this.anadir0(this.minutosActualesCronometro);
-			}
-			else
-			{
-				rsp=this.minutosActualesCronometro;
-			}
+			con0
+			? rsp=this.anadir0(this.minutosActualesCronometro)
+			: rsp=this.minutosActualesCronometro;
 			return rsp;
 		}
 
 		getHorasActualesCronometro(con0=false)
 		{
 			let rsp;
-			if(con0)
-			{
-				rsp=this.anadir0(this.horasActualesCronometro);
-			}
-			else
-			{
-				rsp=this.horasActualesCronometro;
-			}
+			con0
+			? rsp=this.anadir0(this.horasActualesCronometro)
+			: rsp=this.horasActualesCronometro;
 			return rsp;
 		}
 
@@ -1889,14 +1842,9 @@ class Cronometro
 
 		pausarContinuarCronometro()
 		{
-			if(this.saberSiEstaPausadoCronometro)
-			{
-				this.continuarCronometro();
-			}
-			else
-			{
-				this.pausarCronometro();
-			}
+			this.saberSiEstaPausadoCronometro
+			? this.continuarCronometro()
+			: this.pausarCronometro();
 		}
 
 		reiniciarCronometro()
@@ -1918,7 +1866,7 @@ class Cronometro
 		{
 			this.saberSiEstaPausadoCronometro=false;
 			const OBJETO=this;
-			this.intervaloCronometro=setInterval(function(e)
+			this.intervaloCronometro=setInterval(() =>
 			{
 				OBJETO.sumar1Segundo();
 				OBJETO.accionesACadaIntervaloCronometro();
@@ -2166,18 +2114,18 @@ class Pizarra
 
 			if(MODO_MOUSE)
 			{
-				MI_CANVAS_PIZARRA.addEventListener("mousedown", function(e){OBJETO.apretarMouse(e);});
-				MI_CANVAS_PIZARRA.addEventListener("mousemove", function(e){OBJETO.dibujarMouse(e);});
-				MI_CANVAS_PIZARRA.addEventListener("mouseup", function(e){OBJETO.soltarMouse(e);});
-				MI_CANVAS_PIZARRA.addEventListener("mouseout", function(e){OBJETO.soltarMouse(e);});
-				MI_CANVAS_PIZARRA.addEventListener("mouseover", function(e){OBJETO.soltarMouse(e);});
+				MI_CANVAS_PIZARRA.addEventListener("mousedown", (e)=>OBJETO.apretarMouse(e));
+				MI_CANVAS_PIZARRA.addEventListener("mousemove", (e)=>OBJETO.dibujarMouse(e));
+				MI_CANVAS_PIZARRA.addEventListener("mouseup", (e)=>OBJETO.soltarMouse(e));
+				MI_CANVAS_PIZARRA.addEventListener("mouseout", (e)=>OBJETO.soltarMouse(e));
+				MI_CANVAS_PIZARRA.addEventListener("mouseover", (e)=>OBJETO.soltarMouse(e));
 			}
 
 			if(MODO_TOUCH)
 			{
-				MI_CANVAS_PIZARRA.addEventListener("touchstart", function(e){OBJETO.apretarTactil(e);});
-				MI_CANVAS_PIZARRA.addEventListener("touchmove", function(e){OBJETO.dibujarTactil(e);});
-				MI_CANVAS_PIZARRA.addEventListener("touchend", function(e){OBJETO.soltarTactil(e);});
+				MI_CANVAS_PIZARRA.addEventListener("touchstart", (e)=>OBJETO.apretarTactil(e));
+				MI_CANVAS_PIZARRA.addEventListener("touchmove", (e)=>OBJETO.dibujarTactil(e));
+				MI_CANVAS_PIZARRA.addEventListener("touchend", (e)=>OBJETO.soltarTactil(e));
 			}
 
 			var timerResizeObserver;
@@ -2199,11 +2147,11 @@ class Pizarra
 				OBJETO.repintarLineas();
 			});
 
-			MI_CANVAS_PIZARRA.addEventListener('wheel', function(e)
+			MI_CANVAS_PIZARRA.addEventListener('wheel', (e) =>
 			{
 				if (!e.shiftKey)
 				{
-					DIV_SCROLL.scrollTop += e.deltaY * 3;
+					DIV_SCROLL.scrollTop += e.deltaY;
 				}
 				e.preventDefault();
 			});
@@ -2452,10 +2400,7 @@ class Pizarra
 			const OBJETO = this;
 			clearTimeout(this.timeOnResize);
 			this.timeOnResize=setTimeout(
-				function(e)
-				{
-					OBJETO.redimensionarPizarra(altura,anchura);
-				}
+				() => OBJETO.redimensionarPizarra(altura,anchura)
 			,tiempoSetTimeOut);
 		}
 
@@ -2933,10 +2878,7 @@ class ToolZoom
 
 	activado=true;
 	nPaginasMargenDeCarga=2;
-	constructor()
-	{
-		
-	}
+
 //	tools
 		/**
 		 * Obtiene el valor de una propiedad CSS de un elemento del DOM.
@@ -3198,7 +3140,7 @@ class ToolZoom
 			const DIV_OBJETIVO_EVENTO_ZOOM = document.getElementById(_idDivObjetivoEventoZoom);
 			const OBJETO=this;
 
-			DIV_OBJETIVO_EVENTO_ZOOM.addEventListener("wheel", function(e)
+			DIV_OBJETIVO_EVENTO_ZOOM.addEventListener("wheel", (e) =>
 			{
 				if(OBJETO.activado)
 				{
@@ -3373,7 +3315,7 @@ class ToolZoom
 			const OBJETO = this;
 			const DIV_OBJETIVO_EVENTO_ZOOM = document.getElementById(_idDivObjetivoEventoZoom);
 
-			DIV_OBJETIVO_EVENTO_ZOOM.addEventListener("wheel", function(e)
+			DIV_OBJETIVO_EVENTO_ZOOM.addEventListener("wheel", (e) =>
 			{
 				if(OBJETO.activado)
 				{
@@ -3462,7 +3404,7 @@ class ToolZoom
 			let zoomeando=false;
 			let elementosAZoomear;
 
-			DIV_OBJETIVO_EVENTO_ZOOM.addEventListener("touchstart", function(e)
+			DIV_OBJETIVO_EVENTO_ZOOM.addEventListener("touchstart", (e) =>
 			{
 				if(OBJETO.activado)
 				{
@@ -3482,7 +3424,7 @@ class ToolZoom
 				}
 			}, false);
 
-			DIV_OBJETIVO_EVENTO_ZOOM.addEventListener("touchmove", function(e)
+			DIV_OBJETIVO_EVENTO_ZOOM.addEventListener("touchmove", (e) =>
 			{
 				if(OBJETO.activado)
 				{
@@ -3544,7 +3486,7 @@ class ToolZoom
 				}
 			});
 
-			DIV_OBJETIVO_EVENTO_ZOOM.addEventListener("touchend", function(e)
+			DIV_OBJETIVO_EVENTO_ZOOM.addEventListener("touchend", () =>
 			{
 				if(OBJETO.activado)
 				{
@@ -3598,11 +3540,6 @@ class ToolBarraMovil
 
 	isResizing=false;
 	barraDimensionadoraActiva="";
-
-	constructor()
-	{
-		
-	}
 
 //	Tools
 //	/Tools
@@ -3659,7 +3596,7 @@ class ToolBarraMovil
 
 			if(_orientacionBarra=="vertical")
 			{
-				_divBarraMovil.addEventListener("mousedown", function(e)
+				_divBarraMovil.addEventListener("mousedown", (e) =>
 				{
 					isResizing = true;
 					barraDimensionadoraActiva = e.currentTarget;
@@ -3669,7 +3606,7 @@ class ToolBarraMovil
 				});
 				
 				let animationFrameId = null;
-				_divAreaDeEvento.addEventListener("mousemove", function(e)
+				_divAreaDeEvento.addEventListener("mousemove", (e) =>
 				{
 					if (isResizing)
 					{
@@ -3710,7 +3647,7 @@ class ToolBarraMovil
 					}
 				});
 				
-				document.addEventListener("mouseup", function(e)
+				document.addEventListener("mouseup", () =>
 				{
 					if (isResizing)
 					{
@@ -3733,7 +3670,7 @@ class ToolBarraMovil
 			}
 			else //orientacionBarra== "horizontal"
 			{
-				_divBarraMovil.addEventListener("mousedown", function(e)
+				_divBarraMovil.addEventListener("mousedown", (e) =>
 				{
 					isResizing = true;
 					barraDimensionadoraActiva = e.currentTarget;
@@ -3743,7 +3680,7 @@ class ToolBarraMovil
 				});
 				
 				let animationFrameId = null;
-				_divAreaDeEvento.addEventListener("mousemove", function(e)
+				_divAreaDeEvento.addEventListener("mousemove", (e) =>
 				{
 					if (isResizing)
 					{
@@ -3786,7 +3723,7 @@ class ToolBarraMovil
 					}
 				});
 				
-				document.addEventListener("mouseup", function(e)
+				document.addEventListener("mouseup", () =>
 				{
 					if (isResizing)
 					{
@@ -3828,7 +3765,7 @@ class ToolBarraMovil
 
 			if(_orientacionBarra=="vertical")
 			{
-				_divBarraMovil.addEventListener("touchstart", function(e)
+				_divBarraMovil.addEventListener("touchstart", (e) =>
 				{
 					isResizing = true;
 					barraDimensionadoraActiva = e.currentTarget;
@@ -3838,7 +3775,7 @@ class ToolBarraMovil
 				});
 				
 				let animationFrameId = null;
-				_divBarraMovil.addEventListener("touchmove", function(e)
+				_divBarraMovil.addEventListener("touchmove", (e) =>
 				{
 					if (isResizing)
 					{
@@ -3878,7 +3815,7 @@ class ToolBarraMovil
 					}
 				});
 				
-				_divBarraMovil.addEventListener("touchend", function(e)
+				_divBarraMovil.addEventListener("touchend", () =>
 				{
 					if (isResizing)
 					{
@@ -3901,7 +3838,7 @@ class ToolBarraMovil
 			}
 			else //orientacionBarra== "horizontal"
 			{
-				_divBarraMovil.addEventListener("touchstart", function(e)
+				_divBarraMovil.addEventListener("touchstart", (e) =>
 				{
 					isResizing = true;
 					barraDimensionadoraActiva = e.currentTarget;
@@ -3911,7 +3848,7 @@ class ToolBarraMovil
 				});
 				
 				let animationFrameId = null;
-				_divBarraMovil.addEventListener("touchmove", function(e)
+				_divBarraMovil.addEventListener("touchmove", (e) =>
 				{
 					if (isResizing)
 					{
@@ -3951,7 +3888,7 @@ class ToolBarraMovil
 					}
 				});
 				
-				_divBarraMovil.addEventListener("touchend", function(e)
+				_divBarraMovil.addEventListener("touchend", () =>
 				{
 					if (isResizing)
 					{
@@ -4308,11 +4245,6 @@ class ToolBotonesPaginacion
 	anadidoCSS=false;
 	timeoutScrollInputPaginador;
 
-	constructor()
-	{
-		
-	}
-
 	//	Tools
 			pasarAArray(variable)
 			{
@@ -4538,7 +4470,7 @@ class ToolBotonesPaginacion
 				const OBJETO=this;
 				const INPUT_TEXT_PAGINAS=document.getElementById(_idInputTextPaginas);
 
-				INPUT_TEXT_PAGINAS.addEventListener("input", function(e)
+				INPUT_TEXT_PAGINAS.addEventListener("input", (e) =>
 				{
 					if(e.currentTarget.dataset.disabled!="true")
 					{
@@ -4569,7 +4501,7 @@ class ToolBotonesPaginacion
 					}
 				});
 
-				INPUT_TEXT_PAGINAS.addEventListener("focus", function(e)
+				INPUT_TEXT_PAGINAS.addEventListener("focus", (e) =>
 				{
 					if(document.querySelectorAll("#"+_idDivContenedorPaginas+" .pagina").length>1)
 					{
@@ -4577,7 +4509,7 @@ class ToolBotonesPaginacion
 					}
 				});
 
-				INPUT_TEXT_PAGINAS.addEventListener("change", function(e)
+				INPUT_TEXT_PAGINAS.addEventListener("change", () =>
 				{
 					if(document.querySelectorAll("#"+_idDivContenedorPaginas+" .pagina").length>1)
 					{
@@ -4585,7 +4517,7 @@ class ToolBotonesPaginacion
 					}
 				});
 
-				INPUT_TEXT_PAGINAS.addEventListener('keydown', function(e)
+				INPUT_TEXT_PAGINAS.addEventListener('keydown', (e) =>
 				{
 					if (e.key === 'Enter')
 					{
@@ -4599,20 +4531,20 @@ class ToolBotonesPaginacion
 
 				if(_touchMode)
 				{
-					document.getElementById(_idDivConScroll).addEventListener("touchmove", function(e)
+					document.getElementById(_idDivConScroll).addEventListener("touchmove", () =>
 					{
 						OBJETO.actualizarInputTextPaginas(_idDivConScroll, _idInputTextPaginas, _idDivContenedorPaginas);
 					});
 				}
 				else
 				{
-					document.getElementById(_idDivConScroll).addEventListener("wheel", function(e)
+					document.getElementById(_idDivConScroll).addEventListener("wheel", () =>
 					{
 						OBJETO.actualizarInputTextPaginas(_idDivConScroll, _idInputTextPaginas, _idDivContenedorPaginas);
 					});
 				}
 
-				document.getElementById(_idDivConScroll).addEventListener("scroll",function(e)
+				document.getElementById(_idDivConScroll).addEventListener("scroll",() =>
 				{
 					//El timeout es para que al dar al botón más/menos página no se cambie el número del paginador al principio justo después de que se cambiase por darle al botón, dando un par de cambios de número confusos momentáneamente
 					//De esta manera no entorpece los botones más/menos página y a la vez se activa al hacer scroll en el táctil de un portátil
@@ -4622,7 +4554,7 @@ class ToolBotonesPaginacion
 
 				if(_idBotonMenos!="")
 				{
-					document.getElementById(_idBotonMenos).addEventListener("click", function(e)
+					document.getElementById(_idBotonMenos).addEventListener("click", (e) =>
 					{
 						if(e.currentTarget.dataset.disabled!="true")
 						{
@@ -4653,7 +4585,7 @@ class ToolBotonesPaginacion
 
 				if(_idBotonMas!="")
 				{
-					document.getElementById(_idBotonMas).addEventListener("click", function(e)
+					document.getElementById(_idBotonMas).addEventListener("click", (e) =>
 					{
 						if(e.currentTarget.dataset.disabled!="true")
 						{
@@ -4689,7 +4621,7 @@ class ToolBotonesPaginacion
 
 				if(_idBotonRotar!="")
 				{
-					document.getElementById(_idBotonRotar).addEventListener("click", function(e)
+					document.getElementById(_idBotonRotar).addEventListener("click", (e) =>
 					{
 						if(e.currentTarget.dataset.disabled!="true")
 						{
@@ -4712,7 +4644,7 @@ class ToolBotonesPaginacion
 
 				if(_idBotonRotarTodas!="")
 				{
-					document.getElementById(_idBotonRotarTodas).addEventListener("click", function(e)
+					document.getElementById(_idBotonRotarTodas).addEventListener("click", (e) =>
 					{
 						if(e.currentTarget.dataset.disabled!="true")
 						{
@@ -4902,19 +4834,11 @@ class ToolPDF2img
 				const READER = new FileReader();
 				const OBJETO=this;
 
-				READER.onload = function(e)
-				{
-					OBJETO.pdf2img(e.target.result);
-				}
+				READER.onload = (e) => OBJETO.pdf2img(e.target.result);
 
-				if(_archivo)
-				{
-					READER.readAsDataURL(_archivo);
-				}
-				else
-				{
-					console.log("Error de lectura del archivo");
-				}
+				_archivo
+				? READER.readAsDataURL(_archivo)
+				: console.log("Error de lectura del archivo");
 			}
 	//	/Primarias
 }
@@ -5597,7 +5521,7 @@ class ControlPaginasCargaDinamica
 		iniciarEventListenerConPaginas()
 		{
 			const OBJETO=this;
-			document.getElementById(this.idDivContenedorPaginas).addEventListener('click', function(e)
+			document.getElementById(this.idDivContenedorPaginas).addEventListener('click', (e) =>
 			{
 				if (e.target.classList.contains('botonCerrarPagina'))
 				{
@@ -5610,7 +5534,7 @@ class ControlPaginasCargaDinamica
 		iniciarListenerScrollCargaContenidoPaginaSrc()
 		{
 			const OBJETO=this;
-			document.getElementById(this.idDivConScroll).addEventListener("scroll",function(e)
+			document.getElementById(this.idDivConScroll).addEventListener("scroll",() =>
 			{
 				clearTimeout(OBJETO.timeoutScrollActualizarSrc);
 				OBJETO.timeoutScrollActualizarSrc=setTimeout(function(){OBJETO.actualizarSrcsCorrespondientesAlViewport();},400);
@@ -5734,11 +5658,6 @@ class ToolControlPaginas
 	accionesTrasEliminarPaginaYNoHaberPaginas=()=>{};
 	accionesAlFinalizarDeIntroducirContenidosPaginas=()=>{};
 
-	constructor()
-	{
-		
-	}
-
 //	Tools
 		pasarAArray(variable)
 		{
@@ -5781,14 +5700,9 @@ class ToolControlPaginas
 						{
 							if(valorCSS==_valorOValoresCSS[j])
 							{
-								if((j+1) >= _valorOValoresCSS.length)
-								{
-									valorCSSAAplicar=_valorOValoresCSS[0];
-								}
-								else
-								{
-									valorCSSAAplicar=_valorOValoresCSS[j+1];
-								}
+								(j+1) >= _valorOValoresCSS.length
+								? valorCSSAAplicar=_valorOValoresCSS[0]
+								: valorCSSAAplicar=_valorOValoresCSS[j+1];
 								interruptor=true;
 							}
 						}
@@ -5804,16 +5718,16 @@ class ToolControlPaginas
 
 					if(_importante)
 					{
-						for(let i=0;i<_elementos.length;i++)
+						for(let elemento of _elementos)
 						{
-							_elementos[i].style.setProperty(_propiedadCSS, valorCSSAAplicar, "important");
+							elemento.style.setProperty(_propiedadCSS, valorCSSAAplicar, "important");
 						}
 					}
 					else
 					{
-						for(let i=0;i<_elementos.length;i++)
+						for(let elemento of _elementos)
 						{
-							_elementos[i].style.setProperty(_propiedadCSS, valorCSSAAplicar);
+							elemento.style.setProperty(_propiedadCSS, valorCSSAAplicar);
 						}
 					}
 				}
@@ -5845,15 +5759,9 @@ class ToolControlPaginas
 			{
 				CANVAS.toBlob(function(blob)
 				{
-					if (blob) {
-						// Si se obtuvo el objeto Blob con éxito, se resuelve la Promesa.
-						resolve(blob);
-					}
-					else
-					{
-						// Si no se pudo obtener el objeto Blob, se rechaza la Promesa con un mensaje de error.
-						reject(new Error('Error al convertir la imagen a Blob.'));
-					}
+					blob
+					? resolve(blob) // Si se obtuvo el objeto Blob con éxito, se resuelve la Promesa.
+					: reject(new Error('Error al convertir la imagen a Blob.')); // Si no se pudo obtener el objeto Blob, se rechaza la Promesa con un mensaje de error.
 				});
 			});
 		}
@@ -5956,9 +5864,9 @@ class ToolControlPaginas
 
 		eliminarElementos(_elementos)
 		{
-			for(let i=0;i<_elementos.length;i++)
+			for(let elemento of _elementos)
 			{
-				eliminarElemento(_elementos[i]);
+				eliminarElemento(elemento);
 			}
 		}
 
@@ -6087,9 +5995,9 @@ class ToolControlPaginas
 		eliminarPaginasYMostrarContenidoInicial(_idContenedorPaginas, _displayMostrarContenidoInicial)
 		{
 			const PAGINAS_A_ELIMINAR=Array.from(document.querySelectorAll("#"+_idContenedorPaginas+" .pagina"));
-			for(let i=0;i<PAGINAS_A_ELIMINAR.length;i++)
+			for(let pagina of PAGINAS_A_ELIMINAR)
 			{
-				PAGINAS_A_ELIMINAR[i].remove();
+				pagina.remove();
 			}
 
 			this.comprobarSiDebeEstarContenidoInicial(_idContenedorPaginas, _displayMostrarContenidoInicial);
@@ -6182,7 +6090,7 @@ class ToolControlPaginas
 		iniciarEventListenerConPaginas(_idDivContenedorPaginas, _displayMostrarContenidoInicial)
 		{
 			const OBJETO=this;
-			document.getElementById(_idDivContenedorPaginas).addEventListener('click', function(e)
+			document.getElementById(_idDivContenedorPaginas).addEventListener('click', (e) =>
 			{
 				if (e.target.classList.contains('botonCerrarPagina'))
 				{

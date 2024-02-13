@@ -971,6 +971,9 @@ const es =
         "sobradoTiempo": {
             "html": "¡¡¡¡Te ha sobrado tiempo: "
         },
+        "tiempoInicial": {
+            "html": "Tiempo inicial: "
+        },
         "noCorregidas": {
             "html": "Preguntas específicas contestadas no corregidas: "
         },
@@ -1953,6 +1956,9 @@ const en =
         },
         "sobradoTiempo": {
             "html": "You have plenty of time: "
+        },
+        "tiempoInicial": {
+            "html": "Initial time: "
         },
         "noCorregidas": {
             "html": "Specific questions answered not corrected: "

@@ -851,14 +851,22 @@
 		.botoneraPDFFase1-pestanas-pestana.pestanaActiva:hover
 		{
 			box-shadow: 0 2px 0 2px var(--color-seleccion) inset;
-			-webkit-box-shadow: 0 2px 0 2px var(--color-seleccion) inset;
-			-moz-box-shadow: 0 2px 0 2px var(--color-seleccion) inset;
+			transition: box-shadow .1s ease-in;
+			-webkit-transition: box-shadow .1s ease-in;
+			-moz-transition: box-shadow .1s ease-in;
+			-ms-transition: box-shadow .1s ease-in;
+			-o-transition: box-shadow .1s ease-in;
 		}
 
 		.botoneraPDFFase1-pestanas-pestana.pestanaNoActiva:hover
 		{
 			outline: 2px solid var(--color-seleccion);
 			outline-offset: -2px;
+			transition: outline .1s ease-in;
+			-webkit-transition: outline .1s ease-in;
+			-moz-transition: outline .1s ease-in;
+			-ms-transition: outline .1s ease-in;
+			-o-transition: outline .1s ease-in;
 		}
 
 		.pestanaActiva
@@ -1236,6 +1244,11 @@
 		{
 			outline: 2px solid var(--color-seleccion);
 			outline-offset: -2px;
+			transition: outline .1s ease-in;
+			-webkit-transition: outline .1s ease-in;
+			-moz-transition: outline .1s ease-in;
+			-ms-transition: outline .1s ease-in;
+			-o-transition: outline .1s ease-in;
 		}
 
 		.cursorCorreccion
@@ -2231,6 +2244,11 @@
 		{
 			outline: 2px solid var(--color-seleccion);
 			outline-offset: -2px;
+			transition: outline .1s ease-in;
+			-webkit-transition: outline .1s ease-in;
+			-moz-transition: outline .1s ease-in;
+			-ms-transition: outline .1s ease-in;
+			-o-transition: outline .1s ease-in;
 		}
 
 		input[type=button]:hover, input[type=radio]:hover ,input[type=file]:hover, select:hover, .contenidoInicial:hover, .imgInstrucRapidas:hover, #botonCerrarVisorImagenes:hover, .botonCerrarPagina:hover, .cerrarAlert:hover, .inputColorConfigColor:hover
