@@ -4746,6 +4746,7 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 			switch (NAME_OPTION_MODO_INCORRECTAS_EVALUACION)
 			{
 				case "3":
+					numeroAlternativas = parseInt(document.getElementById("nAlternativas").value);
 					document.getElementById("restanLasIncorrectas").value=(1/(numeroAlternativas-1)).toFixed(3);
 					setRemoveAtributo(document.getElementById("restanLasIncorrectas"),"disabled",1);
 				break;
