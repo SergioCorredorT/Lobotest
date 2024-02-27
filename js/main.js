@@ -4807,6 +4807,11 @@ Array.from(FASE1CONFIGURACION.getElementsByClassName("bandera")).forEach((elemen
 			}
 		});
 
+		document.getElementById("closeButtonModalEvaluacion").addEventListener("click", 
+		() =>
+			document.getElementById(`modalOpcionesDeEvaluacion`).style.display="none"
+		);
+
 		document.getElementById("cancelarEvaluacion").addEventListener("click", 
 		() =>
 			document.getElementById(`modalOpcionesDeEvaluacion`).style.display="none"
