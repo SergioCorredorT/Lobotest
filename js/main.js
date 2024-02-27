@@ -3469,6 +3469,11 @@ document.querySelectorAll(".focusContenido").forEach(
 	(btn) => btn.addEventListener('focus', (e) => e.target.select())
 );
 
+document.getElementById("closeButtonModalInstrucciones").addEventListener("click", 
+() =>
+    document.getElementById('modalInstrucciones').style.display='none'
+);
+
 document.getElementById("botonVolverInstrucciones").addEventListener("click", 
 () =>
     document.getElementById('modalInstrucciones').style.display='none'

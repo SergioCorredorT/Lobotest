@@ -232,7 +232,7 @@
 			justify-content: space-between;
 		}
 
-		.closeButtonModalConfigColores{
+		.closeButtonModal{
 			font-size: 30px;
 			cursor: pointer;
 			border: 1px solid;
@@ -248,9 +248,13 @@
 			top: 0;
 			z-index: 350;
 			left: 100%;
-		  }
+			-webkit-border-radius: 100%;
+			-moz-border-radius: 100%;
+			-ms-border-radius: 100%;
+			-o-border-radius: 100%;
+}
 
-		.closeButtonModalConfigColores:hover {
+		.closeButtonModal:hover {
 		outline: 2px solid var(--color-seleccion);
 		opacity: 1;
 		background-color: #242424;
