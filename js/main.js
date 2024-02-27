@@ -3500,6 +3500,10 @@ document.getElementById("botonConfigColores").addEventListener("click",
 	}
 });
 
+document.getElementById("closeButtonModalConfigColores").addEventListener("click", ()=>{
+	document.getElementById("modalConfigColores").style.display="none";
+});
+
 
     document.querySelectorAll(".file-select").forEach(function (inputFile)
 	{
