@@ -9,6 +9,7 @@ Hice uso de <img src="https://skillicons.dev/icons?i=html,css,js,vscode" /> cord
 
 <h2>URL para ver el resultado</h2>
 [Click para ver el proyecto desplegado en GitHub pages](https://sergiocorredort.github.io/Lobotest/)
+[Click para ver el proyecto en forma de app en Google play](https://play.google.com/store/apps/details?id=es.lobotest)
 
 <h2>Tiempo de programación</h2>
 Unos meses teniendo en cuenta pruebas para aprender, cambios de estructura importantes, y que al principio no estaba pensado para escalar
