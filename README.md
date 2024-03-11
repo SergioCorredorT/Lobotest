@@ -8,6 +8,7 @@ Su funcionamiento consiste en generar hojas de respuesta interactivas para respo
 Hice uso de <img src="https://skillicons.dev/icons?i=html,css,js,vscode" /> cordova, PDFjs
 
 <h2>URL para ver el resultado</h2>
+
 [Click para ver el proyecto desplegado en GitHub pages](https://sergiocorredort.github.io/Lobotest/)
 
 [Click para ver el proyecto en forma de app en Google play](https://play.google.com/store/apps/details?id=es.lobotest)
