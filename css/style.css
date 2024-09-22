@@ -2093,7 +2093,8 @@
 		#pizarra1, #pizarra2
 		{
 			display: block;
-			position: fixed;
+			position: absolute;
+			z-index: 1;
 			right: 0;
 			left: 0;
 			top: 0;
@@ -2534,8 +2535,6 @@
 	opacity: 1;
 	background-color: #242424;
 }
-
-
 
 /*
 	@media
