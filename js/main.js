@@ -63,7 +63,7 @@ const CONTENEDOR_DIVS_SCROLLING_TOUCH2 = document.getElementById("contenedorDivs
 //	/Constantes
 
 //	Iniciar objetos
-const OBJ_CONTROL_INPUT_ARCHIVOS = new ControlInputArchivos("js/frameworks/pdf-3.9.179.worker.min.js");
+const OBJ_CONTROL_INPUT_ARCHIVOS = new ControlInputArchivos("js/frameworks/pdf.worker.min.js");
 //	ToolPDF2img
 OBJ_CONTROL_INPUT_ARCHIVOS.accionesTrasCadaPaginaCargadaToolPDF2img = (_pageCount) => {
 	actualizarBarraCarga(_pageCount);
