@@ -2224,6 +2224,7 @@ function alternarRellenoRsp(_id) {
 			ELEMENTO.classList.remove('rellenoTrasTiempo');
 			ELEMENTO.classList.remove('respuestaIncorrecta');
 			ELEMENTO.classList.add('sinRellenar');
+			ELEMENTO.classList.add('respuestaSinCorregir');
 		}
 	}
 	else if (ELEMENTO.classList.contains('sinRellenar')) {
@@ -2235,6 +2236,7 @@ function alternarRellenoRsp(_id) {
 		ELEMENTO.classList.remove('rellenoTrasTiempo');
 		ELEMENTO.classList.remove('respuestaIncorrecta');
 		ELEMENTO.classList.add('sinRellenar');
+		ELEMENTO.classList.add('respuestaSinCorregir');
 	}
 }
 
