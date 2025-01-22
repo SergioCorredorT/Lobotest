@@ -790,14 +790,19 @@ function empezarTest() {
 	OBJ_CRONOMETRO_TEST.accionesACadaIntervaloCronometro = () => { escribirCronometro() };
 	OBJ_CRONOMETRO_TEST.iniciarCronometro();
 
+    const botones = [
+        "botonDeseleccionar",
+        "botonPausarContinuarTiempos",
+        "reiniciarTiempos",
+        "botonCorregir",
+        "botonEvaluar",
+        "botonTerminar",
+        "guardarResultado"
+    ];
 
-	document.getElementById("botonDeseleccionar").removeAttribute("disabled");
-	document.getElementById("botonPausarContinuarTiempos").removeAttribute("disabled");
-	document.getElementById("reiniciarTiempos").removeAttribute("disabled");
-	document.getElementById("botonCorregir").removeAttribute("disabled");
-	document.getElementById("botonEvaluar").removeAttribute("disabled");
-	document.getElementById("botonTerminar").removeAttribute("disabled");
-	document.getElementById("guardarResultado").removeAttribute("disabled");
+    botones.forEach(id => {
+        document.getElementById(id).removeAttribute("disabled");
+    });
 }
 
 function escribirCronometro() {
@@ -805,18 +810,22 @@ function escribirCronometro() {
 }
 
 function pauseContinuar() {
-	OBJ_CRONOMETRO_TEST.pausarContinuarCronometro();
-	OBJ_TEMPORIZADOR_TEST.pausarContinuarTemporizador(document.getElementById("tiempoRestante").value);
-	if (OBJ_CRONOMETRO_TEST.getSaberSiEstaPausadoCronometro()) {
-		anadirQuitarClass(document.getElementById('botonPausarContinuarTiempos'), "botonActivo", 1);
-		document.getElementById("botonPausarContinuarTiempos").value = "▶";
-		setRemoveAtributo(document.getElementById("tiempoRestante"), "disabled", 0);
+    OBJ_CRONOMETRO_TEST.pausarContinuarCronometro();
+	if(haciendoTest){
+		OBJ_TEMPORIZADOR_TEST.pausarContinuarTemporizador(document.getElementById("tiempoRestante").value);
 	}
-	else {
-		anadirQuitarClass(document.getElementById('botonPausarContinuarTiempos'), "botonActivo", 0);
-		document.getElementById("botonPausarContinuarTiempos").value = "⏸︎";
-		setRemoveAtributo(document.getElementById("tiempoRestante"), "disabled", 1);
-	}
+    const botonPausarContinuar = document.getElementById('botonPausarContinuarTiempos');
+    const tiempoRestante = document.getElementById("tiempoRestante");
+
+    if (OBJ_CRONOMETRO_TEST.getSaberSiEstaPausadoCronometro()) {
+        anadirQuitarClass(botonPausarContinuar, "botonActivo", 1);
+        botonPausarContinuar.value = "▶";
+        setRemoveAtributo(tiempoRestante, "disabled", 0);
+    } else {
+        anadirQuitarClass(botonPausarContinuar, "botonActivo", 0);
+        botonPausarContinuar.value = "⏸︎";
+        setRemoveAtributo(tiempoRestante, "disabled", 1);
+    }
 }
 
 function crearDivsDeTablas(_nPregMax) {
@@ -4028,6 +4037,7 @@ function crearEventListenerOpcionesBasicas() {
 							document.getElementById('botonPausarContinuarTiempos').style.background = 'var(--color-fondoBotones)';
 							document.getElementById('botonPausarContinuarTiempos').value = '⏸︎';
 							anadirQuitarClass(document.getElementById('botonPausarContinuarTiempos'), "botonActivo", 0);
+							setRemoveAtributo(document.getElementById("tiempoRestante"), "disabled", 1);
 							haciendoTest = true;
 							modoRellenarFueraDeTiempo = false;
 						},
