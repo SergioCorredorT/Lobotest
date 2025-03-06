@@ -9,6 +9,8 @@ let antiguoScrollBehaviorPreZoom = "";
 let sombrasTextoAutomaticas = true;
 let preguntadoSiSalir = false;
 let primerExitBackButton = false;
+let NUM_PREG_INICIAL = 1;
+let numPregFinal = 100;
 //	/Variables auxiliares
 
 //	Constantes
@@ -244,7 +246,7 @@ let modoDeseleccionar = false;
 let modoTouch = false;
 let haciendoTest = true;
 
-let numPregMax;
+let numPreguntas;
 let numeroAlternativas = 4;
 const ABECEDARIO = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 
@@ -655,9 +657,13 @@ function activarDesactivarModoCorregir(_botonCorregir) {
 
 function recogerPreguntasRequeridas(_arrayNumFilaPreguntas) {
 	let rsp = [];
+	if(NUM_PREG_INICIAL > _arrayNumFilaPreguntas[0]) {
+		let NumPregNoExistentes = NUM_PREG_INICIAL - _arrayNumFilaPreguntas[0];
+		_arrayNumFilaPreguntas.splice(0, NumPregNoExistentes);
+	}
 	for (let numFilaPregunta of _arrayNumFilaPreguntas) {
-		if (FASE2TEST.querySelector('[data-filapreg="' + numFilaPregunta + '"]') != null) {
-			rsp.push(FASE2TEST.querySelector('[data-filapreg="' + numFilaPregunta + '"]'));
+		if (FASE2TEST.querySelector('[data-filapregvisible="' + numFilaPregunta + '"]') != null) {
+			rsp.push(FASE2TEST.querySelector('[data-filapregvisible="' + numFilaPregunta + '"]'));
 		}
 	}
 	return rsp;
@@ -891,8 +897,9 @@ function prepararTemporizadorTest() {
 function iniciarPreparativosFase2() {
 	modoCorregir = false;
 	modoRellenarFueraDeTiempo = false;
-	numPregMax = (document.getElementById("numPregMax")).value;
-	const NUM_PREG_INICIAL = Math.trunc(parseInt((document.getElementById("numPregInicial")).value));
+	NUM_PREG_INICIAL = Math.trunc(parseInt((document.getElementById("numPregInicial")).value));
+	numPreguntas = parseInt((document.getElementById("numPregMax")).value);
+	numPregFinal = (numPreguntas + NUM_PREG_INICIAL - 1);
 
 	prepararTemporizadorTest();
 
@@ -903,17 +910,18 @@ function iniciarPreparativosFase2() {
 	actualizarBotonesActivosBarraIzq();
 	actualizarHabilitacionBotonesMenusRapidos();
 
-	document.getElementById("rangoPregAEvaluar").value = "1-" + numPregMax;
+	actualizarRangoPreguntasAEvaluar();
+
 	FASE2TEST.querySelector(".modoIncorrectasEvaluacion").dispatchEvent(new Event("change"));
 
 	//mostrarLaBarraDimensionadoraAdecuada();
 	redimensionarSegunOrientacionVertical();
 
-	crearDivsDeTablas(numPregMax);
+	crearDivsDeTablas(numPreguntas);
 	mostrarLaBarraDimensionadoraAdecuada();
 	actualizarHabilitacionBotonesPDF();
 
-	crearTest(numPregMax, NUM_PREG_INICIAL);
+	crearTest(numPreguntas, NUM_PREG_INICIAL);
 
 	centrarScrollHorizontal(CONTENEDOR_PDF1_Y_PIZARRA);
 	centrarScrollHorizontal(CONTENEDOR_PDF2_Y_PIZARRA);
@@ -3704,6 +3712,9 @@ function crearEventListenerContenidoContenedorTest() {
 					//Movemos scroll abajo para mayor comodidad de seguir añadiendo
 					const CONTENEDOR_CON_SCROLL = document.getElementById("contenedorTest-preguntasSinTextArea");
 					CONTENEDOR_CON_SCROLL.scrollTop = CONTENEDOR_CON_SCROLL.scrollHeight;
+					numPreguntas++;
+					numPregFinal++;
+					actualizarRangoPreguntasAEvaluar();
 
 					mostrarMensajeCentrado(NUEVO_NUMERO_VISIBLE_PREGUNTA);
 				}
@@ -3713,9 +3724,14 @@ function crearEventListenerContenidoContenedorTest() {
 					const FILA_PREGS = FASE2TEST.getElementsByClassName("filaPreg");
 					if (FILA_PREGS.length > 1) {
 						(FILA_PREGS[FILA_PREGS.length - 1]).remove();
+						numPreguntas--;
+						numPregFinal--;
 					}
 					const ULTIMA_FILA_PREG = (FILA_PREGS[FILA_PREGS.length - 1]);
 					const NUEVO_NUMERO_VISIBLE_PREGUNTA = parseInt(ULTIMA_FILA_PREG.querySelector(".pregunta").innerHTML);
+
+					actualizarRangoPreguntasAEvaluar();
+
 					mostrarMensajeCentrado(NUEVO_NUMERO_VISIBLE_PREGUNTA);
 					actualizarRspRellenarTrParaTdApunte();
 				}
@@ -4239,6 +4255,10 @@ function crearDobleTouchListenerParaScroll(touchElementId, scrollElementId, scro
 }
 //	/divScrollingPDF
 //	Ventana evaluación
+
+function actualizarRangoPreguntasAEvaluar() {
+	document.getElementById("rangoPregAEvaluar").value = NUM_PREG_INICIAL + "-" + numPregFinal;
+}
 document.getElementById("rangoPregAEvaluar").addEventListener("input", (event) => validarCaracterRangoPreguntas(event));
 
 FASE2TEST.querySelector(".modoIncorrectasEvaluacion").addEventListener("change", (e) => {
@@ -4264,7 +4284,7 @@ document.getElementById("continuarEvaluacion").addEventListener("click", () => {
 
 	if (comprobarDatosAEvaluar(RANGO_PREG_A_EVALUAR, restanLasIncorrectas)) {
 		//Recogemos las preguntas a evaluar
-		let stringRangoPreguntas = "1-" + numPregMax;
+		let stringRangoPreguntas = NUM_PREG_INICIAL + "-" + numPreguntas;
 		let preguntasAEvaluar;
 		if (RANGO_PREG_A_EVALUAR.value != "") {
 			stringRangoPreguntas = RANGO_PREG_A_EVALUAR.value;
